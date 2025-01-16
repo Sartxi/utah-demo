@@ -1,0 +1,62 @@
+.textover {
+  z-index: 2;
+  position: relative;
+  height: 100%;
+}
+
+.left,
+.right {
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  padding-top: 0;
+}
+
+.right::before,
+.left::before,
+.right::after {
+  content: '';
+  position: absolute;
+  background: rgba(0, 0, 0, 0.36);
+  z-index: 1;
+  height: 115%;
+  width: 62%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.46) 76%, rgba(0, 0, 0, 0) 100%);
+  transform: rotate(12deg);
+  top: -34%;
+}
+
+.left div:first-child,
+.right div:first-child {
+  z-index: 1;
+  width: 42%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 1100px;
+  align-self: start;
+}
+
+.left::before {
+  left: -13%;
+}
+
+.right::after {
+  right: -8%;
+  z-index: 0;
+  width: 66%;
+}
+
+.right::before {
+  right: -7%;
+  height: 150%;
+}
+
+.right div:first-child {
+  align-self: end;
+  width: 47%;
+}

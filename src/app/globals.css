@@ -26,6 +26,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h2 {
+  font-size: 2em;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -43,6 +47,13 @@ a.cta {
   border-radius: 8px;
   color: white;
   font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+a.cta.large {
+  font-size: 1.2em;
+  padding: 15px 25px;
 }
 
 a.cta:hover {
@@ -56,6 +67,7 @@ header {
   -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
+  z-index: 9;
 }
 
 .header {
@@ -69,7 +81,7 @@ header {
 }
 
 .header .logo {
-  width: 220px;
+  width: 256px;
   height: 100%;
   position: relative;
 }
@@ -95,15 +107,28 @@ header {
 .content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .main-page {
   margin-top: 100px;
 }
 
+p.space {
+  line-height: 24px;
+}
+
+p.semi-bold {
+  font-weight: 500;
+}
+
 @media (max-width: 600px) {
   .header {
     height: 60px;
+  }
+
+  .main-page {
+    margin-top: 60px;
   }
 
   .header .logo {
@@ -128,10 +153,6 @@ header {
     gap: 10px;
     justify-items: center;
     align-items: center;
-  }
-
-  .hamburg {
-    margin-right: 20px;
   }
 
   .ham1,

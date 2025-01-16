@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className={`${font.variable}`}>
         <Header />
-        <div className="main-page content">
+        <div className="main-page">
           {children}
         </div>
         <Footer />
