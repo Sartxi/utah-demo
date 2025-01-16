@@ -1,13 +1,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary: #c25f1d;
+  --shade1: #a74402;
+  --shade2: #8d2a00;
+  --shade3: #720f00;
+  --shade4: #570000;
+  --shade5: #3d0000;
+  --secondary: #c2b21d;
+  --tertiary: #2ec21d;
+  --complementary: #1d80c2;
 }
 
 html,
@@ -19,7 +21,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,8 +37,122 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+a.cta {
+  background-color: var(--primary);
+  padding: 10px 13px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+}
+
+a.cta:hover {
+  background-color: var(--shade2);
+}
+
+header {
+  position: fixed;
+  background-color: var(--background);
+  width: 100vw;
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  height: 100px;
+  padding: 15px 0;
+}
+
+.header .logo {
+  width: 220px;
+  height: 100%;
+  position: relative;
+}
+
+.header .logo img {
+  object-fit: contain
+}
+
+.header .nav {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+}
+
+.header .nav a {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-page {
+  margin-top: 100px;
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 60px;
+  }
+
+  .header .logo {
+    width: 170px;
+  }
+
+  .drawer {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    background-color: white;
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
+  }
+
+  .header .nav .drawer {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .hamburg {
+    margin-right: 20px;
+  }
+
+  .ham1,
+  .ham2,
+  .ham3 {
+    width: 35px;
+    height: 5px;
+    background-color: #666;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+
+  .change .ham1 {
+    transform: translate(0, 11px) rotate(-45deg);
+  }
+
+  .change .ham2 {
+    opacity: 0;
+  }
+
+  .change .ham3 {
+    transform: translate(0, -11px) rotate(45deg);
   }
 }
