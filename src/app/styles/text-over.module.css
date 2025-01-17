@@ -60,3 +60,28 @@
   align-self: end;
   width: 48%;
 }
+
+@media (max-width: 600px) {
+  .right::before,
+  .left::before,
+  .right::after {
+    transform: none;
+  }
+
+  .left div:first-child,
+  .right div:first-child {
+    align-self: center;
+    width: 100%;
+  }
+
+  .left::before {
+    left: 0;
+    width: 115%;
+  }
+
+  .right::after,
+  .right::before {
+    right: 0;
+    width: 100%;
+  }
+}

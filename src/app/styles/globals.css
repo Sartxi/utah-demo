@@ -84,7 +84,17 @@ p.semi-bold {
 }
 
 @media (max-width: 600px) {
+  h1,
+  h2 {
+    font-size: 1.5em;
+  }
+
   .main-page {
     margin-top: 60px;
+  }
+
+  a.cta {
+    display: block;
+    text-align: center;
   }
 }

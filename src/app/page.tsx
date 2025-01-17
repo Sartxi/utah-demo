@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./styles/page.module.css";
+import styles from "./styles/home.module.css";
 import TextOver from "./ui/text-over";
 import Link from "next/link";
 
@@ -19,7 +19,7 @@ export default function Home() {
         </TextOver>
       </div>
       <div className={`content ${styles.servicepod}`}>
-        <Image src="/technician.png" width={200} height={220} alt="Demolition Worker" />
+        <Image className={styles.indguy} src="/technician.png" width={200} height={220} alt="Demolition Worker" />
         <div className={styles.text}>
           <h2 className={styles.hasicon}><Image src="/hammer-icon.svg" alt="hammer" height={30} width={35} /> Demolition Contract Services</h2>
           <p className="space">When you work with us, you can expect flexibility and a dynamic approach to your demolition plan and needs, unsurpassed customer service with an emphasis on client relations, an active, family-like approach to safety day in and day out, and a paramount amount of experience and expertise. Call today to learn more!</p>
