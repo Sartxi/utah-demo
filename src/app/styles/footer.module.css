@@ -51,3 +51,21 @@
   flex-wrap: nowrap;
   gap: 5px;
 }
+
+
+@media (max-width: 600px) {
+  .footer {
+    height: auto;
+    padding: 20px 0 100px;
+  }
+
+  .content {
+    flex-direction: column-reverse;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .methods {
+    justify-content: flex-start;
+  }
+}
