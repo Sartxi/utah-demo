@@ -2,6 +2,7 @@
   height: 20vh;
   display: flex;
   align-items: center;
+  border-top: 10px solid var(--primary);
 }
 
 .content {

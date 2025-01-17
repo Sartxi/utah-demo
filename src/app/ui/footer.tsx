@@ -5,7 +5,7 @@ import Link from "next/link";
 function Nav() {
   return (
     <>
-      <Link href="/">Residential</Link>
+      <Link href="/residential">Residential</Link>
       <Link href="/">Commercial</Link>
       <Link href="/">Our Work</Link>
       <Link href="/">Contact Us</Link>

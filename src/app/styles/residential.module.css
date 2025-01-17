@@ -1,0 +1,39 @@
+.residential {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 70vh;
+}
+
+.hero {
+  height: 15vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroImg {
+  object-fit: cover;
+  z-index: 1;
+}
+
+.services {
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 50px;
+  padding-bottom: 0;
+}
+
+.servicepod {
+  flex: 1 1 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

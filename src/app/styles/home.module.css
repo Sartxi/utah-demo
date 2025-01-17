@@ -22,27 +22,15 @@
 }
 
 .servicepod {
-  background-color: white;
   display: flex;
   align-items: center;
   padding: 20px 0 0 0;
   overflow: hidden;
-  border-radius: 8px;
   width: 80%;
   position: relative;
   top: -40px;
   z-index: 2;
   gap: 10px;
-  -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
-}
-
-.hasicon {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
 }
 
 .text {
@@ -66,7 +54,6 @@
   position: relative;
   overflow: hidden;
   border-top: 10px solid var(--primary);
-  border-bottom: 10px solid var(--primary);
   margin-top: 20px;
   height: 55vh;
 }
