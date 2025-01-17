@@ -10,3 +10,44 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.footlogo {
+  filter: invert(44%) sepia(29%) saturate(1258%) hue-rotate(341deg) brightness(93%) contrast(98%);
+}
+
+.company {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 45px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 5px;
+}
+
+.methods {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 5px;
+}
