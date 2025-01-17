@@ -1,66 +1,4 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #c25f1d;
-  --shade1: #a74402;
-  --shade2: #8d2a00;
-  --shade3: #720f00;
-  --shade4: #570000;
-  --shade5: #3d0000;
-  --secondary: #c2b21d;
-  --tertiary: #2ec21d;
-  --complementary: #1d80c2;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h2 {
-  font-size: 2em;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-a.cta {
-  background-color: var(--primary);
-  padding: 10px 13px;
-  border-radius: 8px;
-  color: white;
-  font-weight: 600;
-  text-transform: uppercase;
-  display: inline-block;
-}
-
-a.cta.large {
-  font-size: 1.2em;
-  padding: 15px 25px;
-}
-
-a.cta:hover {
-  background-color: var(--shade2);
-}
-
-header {
+.header {
   position: fixed;
   background-color: var(--background);
   width: 100vw;
@@ -70,27 +8,26 @@ header {
   z-index: 9;
 }
 
-.header {
+.content {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
   height: 100px;
-  padding: 15px 0;
 }
 
-.header .logo {
+.logo {
   width: 256px;
   height: 100%;
   position: relative;
 }
 
-.header .logo img {
+.logo img {
   object-fit: contain
 }
 
-.header .nav {
+.nav {
   display: flex;
   height: 100%;
   flex-direction: row;
@@ -98,40 +35,18 @@ header {
   gap: 25px;
 }
 
-.header .nav a {
+.nav a {
   cursor: pointer;
   text-transform: uppercase;
   font-size: 1em;
 }
 
-.content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-.main-page {
-  margin-top: 100px;
-}
-
-p.space {
-  line-height: 24px;
-}
-
-p.semi-bold {
-  font-weight: 500;
-}
-
 @media (max-width: 600px) {
-  .header {
+  .content {
     height: 60px;
   }
 
-  .main-page {
-    margin-top: 60px;
-  }
-
-  .header .logo {
+  .logo {
     width: 170px;
   }
 
@@ -144,9 +59,6 @@ p.semi-bold {
     -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
     box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
-  }
-
-  .header .nav .drawer {
     display: flex;
     flex-direction: column;
     padding: 15px;

@@ -1,4 +1,4 @@
-import styles from "./text-over.module.css";
+import styles from "../styles/text-over.module.css";
 
 interface TextProps {
   direction: 'left' | 'right';

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./styles/page.module.css";
 import TextOver from "./ui/text-over";
 import Link from "next/link";
 
@@ -13,7 +13,7 @@ export default function Home() {
             <h1><strong>UNMATCHED</strong> DEMOLITION EXPERIENCE & EXPERTISE</h1>
             <p className="semi-bold space">There is no job too big or small. Utah Demolition can provide the services you require, from complete demolition to selective demolition. <br /><strong>Dust Free Guarantee!</strong></p>
             <div>
-              <Link href="/" className="cta large">Get Consultation</Link>
+              <Link href="/" className="cta large">Free Consultation</Link>
             </div>
           </div>
         </TextOver>

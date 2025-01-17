@@ -1,9 +1,9 @@
 'use client';
-
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useMedia } from "../util";
+import styles from "../styles/header.module.css";
 
 function Nav() {
   return (
@@ -11,7 +11,7 @@ function Nav() {
       <Link href="/">Residential</Link>
       <Link href="/">Commercial</Link>
       <Link href="/">Our Work</Link>
-      <Link href="/">Contact</Link>
+      <Link href="/">Contact Us</Link>
       <Link href="/" className="cta">Get Estimate</Link>
     </>
   )
@@ -21,13 +21,13 @@ function Menu() {
   const [drawer, setDrawer] = useState(false);
   return (
     <div className="mobile-menu">
-      <div className={`hamburg ${drawer ? 'change' : ''}`} onClick={() => setDrawer(!drawer)}>
-        <div className="ham1"></div>
-        <div className="ham2"></div>
-        <div className="ham3"></div>
+      <div className={`${drawer ? styles.change : ''}`} onClick={() => setDrawer(!drawer)}>
+        <div className={styles.ham1}></div>
+        <div className={styles.ham2}></div>
+        <div className={styles.ham3}></div>
       </div>
       {drawer ? (
-        <div className="drawer">
+        <div className={styles.drawer}>
           <Nav />
         </div>
       ) : ''}
@@ -38,9 +38,9 @@ function Menu() {
 export default function Header() {
   const { mobile } = useMedia();
   return (
-    <header>
-      <div className="header content">
-        <div className="logo">
+    <header className={styles.header}>
+      <div className={`${styles.content} content`}>
+        <div className={styles.logo}>
           <Link href="/">
             <Image
               src="/logo.png"
@@ -49,7 +49,7 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="nav">
+        <div className={styles.nav}>
           {mobile ? <Menu /> : <Nav />}
         </div>
       </div>
