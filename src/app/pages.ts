@@ -1,20 +1,22 @@
-export interface TitleDesc {
-  title: string;
-  description: string;
-  detail?: string;
-  image?: string;
-}
+import { PageData } from "./data";
 
-export interface PageData extends TitleDesc {
-  id: string;
-  type: string;
-  elements: TitleDesc[];
+export enum PageType {
+  residential = "Residential",
+  commercial = "Commercial",
+  service = "Service",
 }
 
 export const pages: PageData[] = [
   {
+    id: "residential",
+    type: PageType.service,
+    title: "Residential Services",
+    description:
+      "Before any demolition services can take place, our technicians are trained experts that carry out all the necessary steps to guarantee proper job safety. Offering demolition service across the Wasatch Front.",
+  },
+  {
     id: "kitchen-demolition",
-    type: "residential",
+    type: PageType.residential,
     title: "Kitchen Demolition",
     image: "backsplash.jpg",
     description:

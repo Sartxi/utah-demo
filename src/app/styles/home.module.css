@@ -1,4 +1,4 @@
-.page {
+.home {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -16,12 +16,12 @@
   color: var(--secondary);
 }
 
-.heroImg {
+.image {
   object-fit: cover;
   z-index: 1;
 }
 
-.servicepod {
+.services {
   display: flex;
   align-items: center;
   padding: 20px 0 0 0;
@@ -73,7 +73,7 @@
 }
 
 @media (max-width: 600px) {
-  .servicepod {
+  .services {
     flex-direction: column-reverse;
     width: 90%;
   }

@@ -20,14 +20,14 @@ function Nav() {
 function Menu() {
   const [drawer, setDrawer] = useState(false);
   return (
-    <div className="mobile-menu">
+    <div>
       <div className={`${drawer ? styles.change : ''}`} onClick={() => setDrawer(!drawer)}>
-        <div className={styles.ham1}></div>
-        <div className={styles.ham2}></div>
-        <div className={styles.ham3}></div>
+        <div className={styles.burger}></div>
+        <div className={styles.burger}></div>
+        <div className={styles.burger}></div>
       </div>
       {drawer ? (
-        <div className={styles.drawer}>
+        <div className={`${styles.drawer} shadow`}>
           <Nav />
         </div>
       ) : ''}
@@ -38,7 +38,7 @@ function Menu() {
 export default function Header() {
   const { mobile } = useMedia();
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} shadow`}>
       <div className={`${styles.content} content`}>
         <Link href="/" className={styles.logo}>
           <Image

@@ -2,9 +2,6 @@
   position: fixed;
   background-color: var(--background);
   width: 100vw;
-  -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
   z-index: 9;
 }
 
@@ -60,9 +57,6 @@
     left: 0;
     top: 60px;
     background-color: white;
-    -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
-    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16);
     display: flex;
     flex-direction: column;
     padding: 15px;
@@ -71,9 +65,7 @@
     align-items: center;
   }
 
-  .ham1,
-  .ham2,
-  .ham3 {
+  .burger {
     width: 35px;
     height: 5px;
     background-color: #666;
@@ -81,15 +73,17 @@
     transition: 0.4s;
   }
 
-  .change .ham1 {
+  .change .burger:first-child {
     transform: translate(0, 11px) rotate(-45deg);
+    opacity: 1;
   }
 
-  .change .ham2 {
+  .change .burger {
     opacity: 0;
   }
 
-  .change .ham3 {
+  .change .burger:last-child {
     transform: translate(0, -11px) rotate(45deg);
+    opacity: 1;
   }
 }

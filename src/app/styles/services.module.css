@@ -1,0 +1,45 @@
+.hero {
+  height: 15vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  z-index: 1;
+}
+
+.services {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 50px;
+}
+
+.service {
+  max-width: 200px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 2px solid white;
+}
+
+.service:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.text {
+  border-top: 8px solid var(--secondary);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9em;
+  gap: 15px;
+}
