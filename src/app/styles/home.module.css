@@ -12,6 +12,10 @@
   position: relative;
 }
 
+.hero h1 {
+  font-size: 2.4em;
+}
+
 .hero h1 strong {
   color: var(--secondary);
 }

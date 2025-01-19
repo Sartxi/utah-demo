@@ -5,11 +5,11 @@ import DustFree from "../ui/dust-free";
 import Services from "../ui/services";
 
 export default function Page() {
-  const breadcrumbs: Crumb[] = [{ text: 'Residential' }];
+  const breadcrumbs: Crumb[] = [{ text: 'Commercial' }];
   return (
     <div className={styles.page}>
       <BreadCrumb crumbs={breadcrumbs} />
-      <Services id="residential" type={PageType.residential} />
+      <Services id="commercial" type={PageType.commercial} />
       <DustFree />
     </div>
   )

@@ -8,7 +8,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   const id = params.id;
 
   if (!id) return <span />;
-  const crumbs: Crumb[] = [{ text: 'Residential', page: 'residential' }, { text: id }];
+  const crumbs: Crumb[] = [{ text: 'Commercial', page: 'commercial' }, { text: id }];
 
   return (
     <div className={styles.page}>

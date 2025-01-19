@@ -8,7 +8,7 @@ export default function Home() {
     <div className={styles.home}>
       <div className={styles.hero}>
         <Image src="/home-hero.jpg" className={styles.image} alt="Meeting at a job site" fill={true} />
-        <TextOver direction="left">
+        <TextOver direction="left" size="large">
           <div>
             <h1><strong>UNMATCHED</strong> DEMOLITION EXPERIENCE & EXPERTISE</h1>
             <p className="semi-bold space">There is no job too big or small. Utah Demolition can provide the services you require, from complete demolition to selective demolition. <br /><strong>Dust Free Guarantee!</strong></p>
@@ -43,7 +43,7 @@ export default function Home() {
       </div>
       <div className={styles.solutions}>
         <Image src="/solutions.jpg" className={styles.heroImg} alt="Meeting at a job site" fill={true} />
-        <TextOver direction="right">
+        <TextOver direction="right" size="large">
           <div>
             <h2>Customized Project Solutions</h2>
             <div className={styles.checks}>
