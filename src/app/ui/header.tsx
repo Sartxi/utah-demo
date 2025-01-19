@@ -40,15 +40,14 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={`${styles.content} content`}>
-        <div className={styles.logo}>
-          <Link href="/">
-            <Image
-              src="/logo.png"
-              alt="Utah Dust Free Demolition Logo"
-              fill={true}
-            />
-          </Link>
-        </div>
+        <Link href="/" className={styles.logo}>
+          <Image
+            src="/logo.png"
+            alt="Utah Dust Free Demolition Logo"
+            fill={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </Link>
         <div className={styles.nav}>
           {mobile ? <Menu /> : <Nav />}
         </div>

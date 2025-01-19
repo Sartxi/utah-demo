@@ -19,7 +19,7 @@ export default function Home() {
         </TextOver>
       </div>
       <div className={`content pod ${styles.servicepod}`}>
-        <Image className={styles.indguy} src="/technician.png" width={200} height={220} alt="Demolition Worker" />
+        <Image className={styles.technician} src="/technician.png" width={200} height={220} alt="Demolition Worker" />
         <div className={styles.text}>
           <h2 className="hasicon"><Image src="/hammer-icon.svg" alt="hammer" height={30} width={35} /> Demolition Contract Services</h2>
           <p className="space">When you work with us, you can expect   flexibility and a dynamic approach to your demolition plan and needs, unsurpassed customer service with an emphasis on client relations, an active, family-like approach to safety day in and day out, and a paramount amount of experience and expertise. Call today to learn more!</p>

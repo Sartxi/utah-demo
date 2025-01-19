@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   border-top: 10px solid var(--primary);
+  background-color: #f7f7f7;
 }
 
 .content {
@@ -12,8 +13,9 @@
   align-items: center;
 }
 
-.footlogo {
-  filter: invert(44%) sepia(29%) saturate(1258%) hue-rotate(341deg) brightness(93%) contrast(98%);
+.footlogo,
+.methods img {
+  filter: invert(20%) sepia(97%) saturate(2415%) hue-rotate(27deg) brightness(97%) contrast(98%);
 }
 
 .company {
@@ -63,7 +65,7 @@
   .content {
     flex-direction: column-reverse;
     gap: 30px;
-    align-items: start;
+    align-items: flex-start;
   }
 
   .methods {

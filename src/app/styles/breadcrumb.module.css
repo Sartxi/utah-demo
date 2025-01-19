@@ -1,0 +1,18 @@
+.breadcrumb {
+  background-color: var(--secondary);
+}
+
+.content {
+  padding: 4px 40px;
+  font-size: 0.9em;
+  display: flex;
+  gap: 10px;
+}
+
+.content strong {
+  text-transform: capitalize;
+}
+
+.bullet {
+  margin-left: 10px;
+}
