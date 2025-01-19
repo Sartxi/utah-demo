@@ -7,8 +7,8 @@ function Nav() {
     <>
       <Link href="/residential">Residential</Link>
       <Link href="/commercial">Commercial</Link>
-      <Link href="/">Our Work</Link>
-      <Link href="/">Contact Us</Link>
+      <Link href="/work">Our Work</Link>
+      <Link href="/contact">Contact Us</Link>
     </>
   )
 }

@@ -5,3 +5,14 @@
   justify-content: flex-start;
   min-height: 70vh;
 }
+
+.hero {
+  height: 15vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  z-index: 1;
+}

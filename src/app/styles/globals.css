@@ -55,7 +55,7 @@ a:hover {
   font-weight: 500;
 }
 
-a.cta {
+.cta {
   background-color: var(--primary);
   padding: 10px 13px;
   border-radius: 8px;
@@ -63,14 +63,18 @@ a.cta {
   font-weight: 600;
   text-transform: uppercase;
   display: inline-block;
+  cursor: pointer;
+  border: none;
 }
 
-a.cta.large {
+.cta.large {
   font-size: 1.2em;
   padding: 15px 25px;
 }
 
-a.cta:hover {
+.cta:hover {
+  color: white;
+  font-weight: 600;
   background-color: var(--shade2);
 }
 
