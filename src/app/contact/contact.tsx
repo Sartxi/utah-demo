@@ -22,7 +22,7 @@ export default function ContactUs() {
           </div>
           <div className={styles.point}>
             <Image src="/email.svg" width={20} height={20} alt="Location" />
-            <div className={styles.text}>motiondemolition385@gmail.com</div>
+            <div className={styles.text}>motiondemolition385@gmail.com </div>
           </div>
         </div>
         <div className={styles.socials}>
