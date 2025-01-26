@@ -1,30 +1,11 @@
-import { useState, useEffect } from 'react';
-
-function isMobileDevice() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows NT|Opera Mini/i.test(navigator.userAgent);
+export function wrapFirstWord(str: string, element: string) {
+  const words = str.split(' ');
+  if (words.length === 0) return str;
+  const wrappedWord = `<${element}>${words[0]}</${element}>`;
+  const result = [wrappedWord, ...words.slice(1)].join(' ');
+  return result;
 }
 
-export function useMedia() {
-  const [width, setWidth] = useState(0);
-  const [isDevice, setIsDevice] = useState(false);
-
-  useEffect(() => {
-    function handleResize() {
-      setWidth(window.innerWidth);
-    }
-
-    if (typeof window !== 'undefined') {
-      setIsDevice(isMobileDevice());
-
-      window.addEventListener('resize', handleResize);
-      handleResize();
-
-      return () => window.removeEventListener('resize', handleResize);
-    }
-  }, []);
-
-  const mobile = isDevice && width <= 599;
-  const tablet = isDevice && width >= 600 && width <= 1199;
-
-  return { mobile, tablet, isDevice };
+export function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows NT|Opera Mini/i.test(navigator.userAgent);
 }

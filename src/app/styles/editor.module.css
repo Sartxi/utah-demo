@@ -1,0 +1,86 @@
+.login {
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.form .input {
+  display: flex;
+  flex-direction: column;
+}
+
+.form .input label {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.form .input input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.button {
+  background-color: white;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+.editor {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.95)!important;
+  width: 90vw;
+  height: 90vh;
+  z-index: 9;
+  border-radius: 10px;
+  top: 5vh;
+  left: 5vw;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.session {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-self: flex-start;
+}
+
+.page {
+  flex-grow: 1;
+}

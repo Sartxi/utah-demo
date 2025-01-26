@@ -2,15 +2,17 @@ import Image from "next/image";
 import styles from "./styles/home.module.css";
 import TextOver from "./ui/text-over";
 import Link from "next/link";
+import { wrapFirstWord } from "./util";
+import { getSession } from "../../lib/session";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className={styles.home}>
       <div className={styles.hero}>
-        <Image src="/home-hero.jpg" className={styles.image} alt="Meeting at a job site" fill={true} />
+        <Image src="/home-hero.jpg" className={styles.image} alt="Meeting at a job site" fill={true} priority />
         <TextOver direction="left" size="large">
           <div>
-            <h1><strong>UNMATCHED</strong> DEMOLITION EXPERIENCE & EXPERTISE</h1>
+            <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord('UNMATCHED DEMOLITION EXPERIENCE & EXPERTISE', 'strong') }}></h1>
             <p className="semi-bold space">There is no job too big or small. Utah Demolition can provide the services you require, from complete demolition to selective demolition. <br /><strong>Dust Free Guarantee!</strong></p>
             <div>
               <Link href="/" className="cta large">Free Consultation</Link>

@@ -1,25 +1,27 @@
-import Image from "next/image";
 import styles from "../styles/footer.module.css";
+import Image from "next/image";
 import Link from "next/link";
+import { Nav } from "../../../lib/schema";
 
-function Nav() {
+interface FooterProps {
+  nav: Nav[];
+}
+
+function NavList({ nav }: FooterProps) {
   return (
     <>
-      <Link href="/residential">Residential</Link>
-      <Link href="/commercial">Commercial</Link>
-      <Link href="/work">Our Work</Link>
-      <Link href="/contact">Contact Us</Link>
+      {nav.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
     </>
   )
 }
 
-export default function Footer() {
+export default function Footer({ nav }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <div className={`${styles.content} content`}>
         <div className={styles.nav}>
           <h3>Navigation</h3>
-          <Nav />
+          <NavList nav={nav} />
         </div>
         <div className={styles.company}>
           <div className={styles.contact}>

@@ -1,4 +1,4 @@
-import styles from "../../styles/page.module.css";
+import styles from "@/app/styles/page.module.css";
 import BreadCrumb, { Crumb } from "@/app/ui/breadcrumb";
 import DustFree from "@/app/ui/dust-free";
 import Service from "@/app/ui/service";
@@ -6,6 +6,9 @@ import Service from "@/app/ui/service";
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const id = params.id;
+
+  console.log(id);
+  
 
   if (!id) return <span />;
   const crumbs: Crumb[] = [{ text: 'Commercial', page: 'commercial' }, { text: id }];

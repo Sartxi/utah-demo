@@ -2,22 +2,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useMedia } from "../util";
+import { useMedia } from "../hooks";
 import styles from "../styles/header.module.css";
+import { Nav } from "../../../lib/schema";
 
-function Nav() {
+function NavList({ nav }: { nav: Nav[] }) {
   return (
     <>
-      <Link href="/residential">Residential</Link>
-      <Link href="/commercial">Commercial</Link>
-      <Link href="/work">Our Work</Link>
-      <Link href="/contact">Contact Us</Link>
+      {nav.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
       <Link href="/contact" className="cta">Get Estimate</Link>
     </>
   )
 }
 
-function Menu() {
+function Menu({ nav }: { nav: Nav[] }) {
   const [drawer, setDrawer] = useState(false);
   return (
     <div>
@@ -28,14 +26,18 @@ function Menu() {
       </div>
       {drawer ? (
         <div className={`${styles.drawer} shadow`}>
-          <Nav />
+          <NavList nav={nav} />
         </div>
       ) : ''}
     </div>
   )
 }
 
-export default function Header() {
+interface HeaderProps {
+  nav: Nav[];
+}
+
+export default function Header({ nav }: HeaderProps) {
   const { mobile } = useMedia();
   return (
     <header className={`${styles.header} shadow`}>
@@ -49,7 +51,7 @@ export default function Header() {
           />
         </Link>
         <div className={styles.nav}>
-          {mobile ? <Menu /> : <Nav />}
+          {mobile ? <Menu nav={nav} /> : <NavList nav={nav} />}
         </div>
       </div>
     </header>
