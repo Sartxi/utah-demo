@@ -3,7 +3,6 @@ import styles from "./styles/home.module.css";
 import TextOver from "./ui/text-over";
 import Link from "next/link";
 import { wrapFirstWord } from "./util";
-import { getSession } from "../../lib/session";
 
 export default async function Home() {
   return (
