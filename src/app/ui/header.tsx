@@ -5,12 +5,14 @@ import { useState } from "react";
 import { useMedia } from "../hooks";
 import styles from "../styles/header.module.css";
 import { Nav } from "../../../lib/schema";
+import { getMenu } from "../util";
 
 function NavList({ nav }: { nav: Nav[] }) {
+  const { menu, cta } = getMenu(nav);
   return (
     <>
-      {nav.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
-      <Link href="/contact" className="cta">Get Estimate</Link>
+      {menu.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
+      {cta && <Link href={cta.href ?? "/contact"} className="cta">{cta.name}</Link>}
     </>
   )
 }

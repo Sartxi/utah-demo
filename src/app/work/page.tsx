@@ -3,6 +3,14 @@ import BreadCrumb, { Crumb } from "@/app/ui/breadcrumb";
 import DustFree from "../ui/dust-free";
 import Image from "next/image";
 import TextOver from "../ui/text-over";
+import { getMetaData } from "../../../lib/db";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await getMetaData();
+  const { title, description } = meta ?? {};
+  return { title, description };
+}
 
 export default function Page() {
   const breadcrumbs: Crumb[] = [{ text: 'Our Work' }];

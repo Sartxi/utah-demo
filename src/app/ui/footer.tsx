@@ -10,7 +10,7 @@ interface FooterProps {
 function NavList({ nav }: FooterProps) {
   return (
     <>
-      {nav.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
+      {nav.filter((i) => !i.cta).map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
     </>
   )
 }

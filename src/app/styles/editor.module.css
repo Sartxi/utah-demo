@@ -50,16 +50,15 @@
 
 .editor {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.95)!important;
-  width: 90vw;
-  height: 90vh;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  width: 100vw;
+  height: 100vh;
   z-index: 9;
-  border-radius: 10px;
-  top: 5vh;
-  left: 5vw;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px;
   gap: 20px;
 }
 
@@ -67,6 +66,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ccc;
 }
 
 .session {
@@ -79,8 +80,118 @@
   display: flex;
   gap: 10px;
   align-self: flex-start;
+  align-items: center;
 }
 
 .page {
   flex-grow: 1;
+}
+
+.accordian {
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.accordian:hover {
+  color: var(--primary);
+}
+
+.acccontent[data-open="true"] {
+  transition: all 0.5s;
+  height: auto;
+  width: 100%;
+  opacity: 1;
+}
+
+.acccontent[data-open="false"] {
+  transition: all 0.5s;
+  height: 0;
+  opacity: 0;
+}
+
+.accordian img[data-open="true"] {
+  transform: rotate(90deg);
+  transition: transform 0.5s;
+}
+
+.accordian img[data-open="false"] {
+  transition: all 0.5s;
+}
+
+.edit {
+  cursor: pointer;
+}
+
+.edit:hover,
+.addbtn:hover {
+  filter: invert(40%) sepia(34%) saturate(5822%) hue-rotate(10deg) brightness(92%) contrast(77%);
+}
+
+.site {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.naveditor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.navslot {
+  height: 70px;
+  width: 170px;
+  background-color: #eee;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.navslot:hover {
+  background-color: #ddd;
+}
+
+.addbtn {
+  filter: invert(52%) sepia(0%) saturate(0%) hue-rotate(174deg) brightness(85%) contrast(81%);
+  cursor: pointer;
+}
+
+.meta {
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.metaform,
+.metadata {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.metaform {
+  margin-top: 10px;
+}
+
+.metadata {
+  margin-top: 5px;
+}
+
+.metadata label {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
 }

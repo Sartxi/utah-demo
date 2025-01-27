@@ -1,146 +1,90 @@
 const users = [
   {
-    id: '410544b2-4001-4271-9855-fec4b6a6442a',
-    name: 'Sean Archibeque',
-    email: 'sean.archibeque@gmail.com',
-    password: 'develop!',
-    edited: 'none'
+    id: "410544b2-4001-4271-9855-fec4b6a6442a",
+    name: "Sean Archibeque",
+    email: "sean.archibeque@gmail.com",
+    password: "develop!",
+    edited: "none",
+    phone: "8015770263",
+    address: null,
+    city: null,
+    state: null,
+    zip: null,
+    linkedn: null,
+    instagram: null,
+    facebook: null,
+    contact: false,
   },
 ];
 
-const customers = [
+const nav = [
   {
-    id: 'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
-    name: 'Evil Rabbit',
-    email: 'evil@rabbit.com',
-    image_url: '/customers/evil-rabbit.png',
-  },
-  {
-    id: '3958dc9e-712f-4377-85e9-fec4b6a6442a',
-    name: 'Delba de Oliveira',
-    email: 'delba@oliveira.com',
-    image_url: '/customers/delba-de-oliveira.png',
-  },
-  {
-    id: '3958dc9e-742f-4377-85e9-fec4b6a6442a',
-    name: 'Lee Robinson',
-    email: 'lee@robinson.com',
-    image_url: '/customers/lee-robinson.png',
-  },
-  {
-    id: '76d65c26-f784-44a2-ac19-586678f7c2f2',
-    name: 'Michael Novotny',
-    email: 'michael@novotny.com',
-    image_url: '/customers/michael-novotny.png',
-  },
-  {
-    id: 'CC27C14A-0ACF-4F4A-A6C9-D45682C144B9',
-    name: 'Amy Burns',
-    email: 'amy@burns.com',
-    image_url: '/customers/amy-burns.png',
-  },
-  {
-    id: '13D07535-C59E-4157-A011-F8D2EF4E0CBB',
-    name: 'Balazs Orban',
-    email: 'balazs@orban.com',
-    image_url: '/customers/balazs-orban.png',
+    id: 10,
+    name: "Contact",
+    place: 1,
+    href: "/contact",
   },
 ];
 
-const invoices = [
+const pages = [
   {
-    customer_id: customers[0].id,
-    amount: 15795,
-    status: 'pending',
-    date: '2022-12-06',
+    id: 1,
+    name: "home",
+    type: "custom",
   },
   {
-    customer_id: customers[1].id,
-    amount: 20348,
-    status: 'pending',
-    date: '2022-11-14',
-  },
-  {
-    customer_id: customers[4].id,
-    amount: 3040,
-    status: 'paid',
-    date: '2022-10-29',
-  },
-  {
-    customer_id: customers[3].id,
-    amount: 44800,
-    status: 'paid',
-    date: '2023-09-10',
-  },
-  {
-    customer_id: customers[5].id,
-    amount: 34577,
-    status: 'pending',
-    date: '2023-08-05',
-  },
-  {
-    customer_id: customers[2].id,
-    amount: 54246,
-    status: 'pending',
-    date: '2023-07-16',
-  },
-  {
-    customer_id: customers[0].id,
-    amount: 666,
-    status: 'pending',
-    date: '2023-06-27',
-  },
-  {
-    customer_id: customers[3].id,
-    amount: 32545,
-    status: 'paid',
-    date: '2023-06-09',
-  },
-  {
-    customer_id: customers[4].id,
-    amount: 1250,
-    status: 'paid',
-    date: '2023-06-17',
-  },
-  {
-    customer_id: customers[5].id,
-    amount: 8546,
-    status: 'paid',
-    date: '2023-06-07',
-  },
-  {
-    customer_id: customers[1].id,
-    amount: 500,
-    status: 'paid',
-    date: '2023-08-19',
-  },
-  {
-    customer_id: customers[5].id,
-    amount: 8945,
-    status: 'paid',
-    date: '2023-06-03',
-  },
-  {
-    customer_id: customers[2].id,
-    amount: 1000,
-    status: 'paid',
-    date: '2022-06-05',
+    id: 2,
+    name: "contact",
+    type: "custom",
   },
 ];
 
-const revenue = [
-  { month: 'Jan', revenue: 2000 },
-  { month: 'Feb', revenue: 1800 },
-  { month: 'Mar', revenue: 2200 },
-  { month: 'Apr', revenue: 2500 },
-  { month: 'May', revenue: 2300 },
-  { month: 'Jun', revenue: 3200 },
-  { month: 'Jul', revenue: 3500 },
-  { month: 'Aug', revenue: 3700 },
-  { month: 'Sep', revenue: 2500 },
-  { month: 'Oct', revenue: 2800 },
-  { month: 'Nov', revenue: 3000 },
-  { month: 'Dec', revenue: 4800 },
+const content = [
+  {
+    id: 1,
+    page: 1,
+    type: "hero",
+    title: "UNMATCHED DEMOLITION EXPERIENCE & EXPERTISE",
+    description:
+      "There is no job too big or small. Utah Demolition can provide the services you require, from complete demolition to selective demolition. Dust Free Guarantee!",
+    cta: "Free consultation",
+    ctal: "/contact",
+    image: "/home-hero.jpg",
+    list: null,
+  },
+  {
+    id: 2,
+    page: 1,
+    type: "service",
+    title: "Demolition Contract Services",
+    description:
+      "When you work with us, you can expect flexibility and a dynamic approach to your demolition plan and needs, unsurpassed customer service with an emphasis on client relations, an active, family-like approach to safety day in and day out, and a paramount amount of experience and expertise. Call today to learn more!",
+    cta: null,
+    ctal: null,
+    image: "/technician.png",
+    list: '["Residential","Commercial","Industrial"]',
+  },
+  {
+    id: 3,
+    page: 1,
+    type: "solutions",
+    title: "Customized Project Solutions",
+    description:
+      "No matter the job size, we are always willing to supply you with a demo plan laid out in an easy-to-understand format with pictures and explanations. You deserve this kind of attention, and our design team is readily prepared. In addition to demolition plans and advice, we are capable of doing everything from pulling permits to coordinating inspections to unusual, out-of-the-ordinary dismantlement. We want you to feel confident when you are partnered with us.",
+    cta: "Get Started",
+    ctal: "/contact",
+    image: "/solutions.jpg",
+    list: '["Dust Free Guarantee","Safety First Approach","Time Saving & Efficient"]',
+  },
 ];
 
-export { users, customers, invoices, revenue };
+const meta = [
+  {
+    id: 1,
+    title: "Website",
+    description: "New Website",
+    page: 1,
+  },
+];
+
+export { users, nav, pages, content, meta };

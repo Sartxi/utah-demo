@@ -3,11 +3,11 @@ import BreadCrumb, { Crumb } from "@/app/ui/breadcrumb";
 import DustFree from "@/app/ui/dust-free";
 import Service from "@/app/ui/service";
 
-export default async function Page(props: { params: Promise<{ id: string }> }) {
+export default async function Page(props: { params: Promise<{ id: string, serviceId: string }> }) {
   const params = await props.params;
-  const id = params.id;
+  const id = params.serviceId;
 
-  console.log(id);
+  console.log(params);
   
 
   if (!id) return <span />;

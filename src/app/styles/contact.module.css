@@ -67,15 +67,6 @@
   display: block;
 }
 
-.form input {
-  display: block;
-  padding: 10px;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
-}
-
 .form button {
   margin-top: 10px;
 }

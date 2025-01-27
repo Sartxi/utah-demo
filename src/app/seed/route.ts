@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { db } from "@vercel/postgres";
-import { users } from "./seeds";
+import { users, nav, pages, content, meta } from "./seeds";
 
 const client = await db.connect();
 
@@ -12,7 +12,16 @@ async function seedUsers() {
       name VARCHAR(255) NOT NULL,
       email TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL,
-      edited TEXT
+      edited TEXT,
+      phone: VARCHAR(10),
+      address: TEXT,
+      city: TEXT,
+      state: TEXT,
+      zip: VARCHAR(10),
+      linkedn: VARCHAR(255),
+      instagram: VARCHAR(255),
+      facebook: VARCHAR(255),
+      contact: BOOLEAN NOT NULL,
     );
   `;
 
@@ -20,8 +29,8 @@ async function seedUsers() {
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       return client.sql`
-        INSERT INTO users (id, name, email, password, edited)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword}, ${user.edited})
+        INSERT INTO users (id, name, email, password, edited, phone, address, city, state, zip, linkedn, instagram, facebook, contact)
+        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword}, ${user.edited}, ${user.phone}, ${user.address}, ${user.city}, ${user.state}, ${user.zip}, ${user.linkedn}, ${user.instagram}, ${user.facebook}, ${user.contact})
         ON CONFLICT (id) DO NOTHING;
       `;
     })
@@ -30,85 +39,114 @@ async function seedUsers() {
   return insertedUsers;
 }
 
-// async function seedInvoices() {
-//   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+async function seedNav() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS nav (
+      id INT PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      place INT NOT NULL UNIQUE,
+      href TEXT NOT NULL,
+    );
+  `;
 
-//   await client.sql`
-//     CREATE TABLE IF NOT EXISTS invoices (
-//       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-//       customer_id UUID NOT NULL,
-//       amount INT NOT NULL,
-//       status VARCHAR(255) NOT NULL,
-//       date DATE NOT NULL
-//     );
-//   `;
+  const insertedNav = await Promise.all(
+    nav.map(async (n) => {
+      return client.sql`
+        INSERT INTO nav (id, name, place, href)
+        VALUES (${n.id}, ${n.name}, ${n.place}, ${n.href})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+    })
+  );
 
-//   const insertedInvoices = await Promise.all(
-//     invoices.map(
-//       (invoice) => client.sql`
-//         INSERT INTO invoices (customer_id, amount, status, date)
-//         VALUES (${invoice.customer_id}, ${invoice.amount}, ${invoice.status}, ${invoice.date})
-//         ON CONFLICT (id) DO NOTHING;
-//       `
-//     )
-//   );
+  return insertedNav;
+}
 
-//   return insertedInvoices;
-// }
+async function seedPages() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS pages (
+      id INT PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      type VARCHAR(255) NOT NULL,
+    );
+  `;
 
-// async function seedCustomers() {
-//   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  const insertedPages = await Promise.all(
+    pages.map(async (n) => {
+      return client.sql`
+        INSERT INTO pages (id, name, type)
+        VALUES (${n.id}, ${n.name}, ${n.type})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+    })
+  );
 
-//   await client.sql`
-//     CREATE TABLE IF NOT EXISTS customers (
-//       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-//       name VARCHAR(255) NOT NULL,
-//       email VARCHAR(255) NOT NULL,
-//       image_url VARCHAR(255) NOT NULL
-//     );
-//   `;
+  return insertedPages;
+}
 
-//   const insertedCustomers = await Promise.all(
-//     customers.map(
-//       (customer) => client.sql`
-//         INSERT INTO customers (id, name, email, image_url)
-//         VALUES (${customer.id}, ${customer.name}, ${customer.email}, ${customer.image_url})
-//         ON CONFLICT (id) DO NOTHING;
-//       `
-//     )
-//   );
+async function seedMeta() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS meta (
+      id INT PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      description VARCHAR(255) NOT NULL,
+      page: INT UNIQUE
+    );
+  `;
 
-//   return insertedCustomers;
-// }
+  const insertedMeta = await Promise.all(
+    meta.map(async (n) => {
+      return client.sql`
+        INSERT INTO meta (id, title, description, page)
+        VALUES (${n.id}, ${n.title}, ${n.description}, ${n.page})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+    })
+  );
 
-// async function seedRevenue() {
-//   await client.sql`
-//     CREATE TABLE IF NOT EXISTS revenue (
-//       month VARCHAR(4) NOT NULL UNIQUE,
-//       revenue INT NOT NULL
-//     );
-//   `;
+  return insertedMeta;
+}
 
-//   const insertedRevenue = await Promise.all(
-//     revenue.map(
-//       (rev) => client.sql`
-//         INSERT INTO revenue (month, revenue)
-//         VALUES (${rev.month}, ${rev.revenue})
-//         ON CONFLICT (month) DO NOTHING;
-//       `
-//     )
-//   );
+async function seedContent() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS content (
+      id INT PRIMARY KEY,
+      page INT NOT NULL
+      type VARCHAR(255) NOT NULL,
+      title VARCHAR(255) NOT NULL,
+      description TEXT,
+      cta: VARCHAR(255),
+      ctal: VARCHAR(255),
+      image: VARCHAR(255),
+      list: TEXT,
+    );
+  `;
 
-//   return insertedRevenue;
-// }
+  const insertedContent = await Promise.all(
+    content.map(async (n) => {
+      return client.sql`
+        INSERT INTO content (id, page, type, title, description, cta, ctal, image, list)
+        VALUES (${n.id}, ${n.page}, ${n.type}, ${n.title}, ${n.description}, ${n.cta}, ${n.ctal}, ${n.image}, ${n.list})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+    })
+  );
+
+  return insertedContent;
+}
 
 export async function GET() {
   try {
     await client.sql`BEGIN`;
     await seedUsers();
-    // await seedCustomers();
-    // await seedInvoices();
-    // await seedRevenue();
+    await seedNav();
+    await seedPages();
+    await seedContent();
+    await seedMeta();
     await client.sql`COMMIT`;
 
     return Response.json({ message: "Database seeded successfully" });

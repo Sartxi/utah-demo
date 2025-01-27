@@ -4,7 +4,7 @@ import { Montserrat } from "next/font/google";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
 import SaWidget from "./sa-editor/widget";
-import { getNav } from "../../lib/db";
+import { getMetaData, getNav } from "../../lib/db";
 
 const font = Montserrat({
   variable: "--font",
@@ -12,10 +12,11 @@ const font = Montserrat({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-export const metadata: Metadata = {
-  title: "Utah Dust Free Demolition",
-  description: "Dust Free Demolition Professionals in Residential and Commercial Demolition in Utah, providing both interior and exterior demolition in Utah. Call today 385-335-1499",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await getMetaData();
+  const { title, description } = meta ?? {};
+  return { title, description };
+}
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const nav = await getNav();

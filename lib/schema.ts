@@ -1,5 +1,6 @@
 import {
   integer,
+  boolean,
   pgTable,
   serial,
   text,
@@ -14,6 +15,15 @@ export const users = pgTable(
     email: text("email").notNull(),
     password: text("password").notNull(),
     edited: text(),
+    phone: integer(),
+    address: text("address"),
+    city: text("city"),
+    state: text("state"),
+    zip: text("zip"),
+    linkedn: text("linkedn"),
+    instagram: text("instagram"),
+    facebook: text("facebook"),
+    contact: boolean().notNull(),
   },
   (users) => [uniqueIndex("unique_idx").on(users.email)]
 );
@@ -23,16 +33,26 @@ export interface User {
   name: string;
   email: string;
   password: string;
-  edited: string | null;
+  edited?: string;
+  phone?: number;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+  linkedn?: string;
+  instagram?: string;
+  facebook?: string;
+  contact: boolean;
 }
 
 export const nav = pgTable(
   "nav",
   {
-    id: serial("id").primaryKey(),
+    id: integer("id").primaryKey(),
     name: text("name").notNull(),
     place: integer().notNull(),
     href: text("href").notNull(),
+    cta: boolean().notNull(),
   },
   (nav) => [uniqueIndex("unique_idx").on(nav.name)]
 );
@@ -42,4 +62,67 @@ export interface Nav {
   name: string;
   place: number;
   href: string;
+  cta: boolean;
+}
+
+export const meta = pgTable(
+  "meta",
+  {
+    id: integer("id").primaryKey(),
+    title: text("title").notNull(),
+    description: text("description").notNull(),
+    page: integer(),
+  },
+  (meta) => [uniqueIndex("unique_idx").on(meta.id)]
+);
+
+export interface Meta {
+  id: number;
+  title: string;
+  description: string;
+  page: number | null;
+}
+
+export const pages = pgTable(
+  "pages",
+  {
+    id: integer("id").primaryKey(),
+    name: text("name").notNull(),
+    type: text("type").notNull(),
+  },
+  (page) => [uniqueIndex("unique_idx").on(page.id)]
+);
+
+export interface Pages {
+  id: number;
+  name: string;
+  type: string;
+}
+
+export const content = pgTable(
+  "content",
+  {
+    id: integer("id").primaryKey(),
+    page: integer("page").notNull(),
+    type: text("type").notNull(),
+    title: text("title").notNull(),
+    description: text("description"),
+    cta: text("cta"),
+    ctal: text("ctal"),
+    image: text("image"),
+    list: text("list"),
+  },
+  (content) => [uniqueIndex("unique_idx").on(content.id)]
+);
+
+export interface Content {
+  id: number;
+  page: number;
+  type: string;
+  title: string;
+  description: string | null;
+  cta: string | null;
+  ctal: string | null;
+  image: string | null;
+  list: string | null;
 }

@@ -3,67 +3,67 @@ import styles from "./styles/home.module.css";
 import TextOver from "./ui/text-over";
 import Link from "next/link";
 import { wrapFirstWord } from "./util";
+import { getPage } from "../../lib/db";
 
 export default async function Home() {
+  const { content, metadata } = await getPage('home');
+  if (!content) return <span />;
+  const hero = content.find((c) => c.type === 'hero');
+  const services = content.find((c) => c.type === 'service');
+  const solutions = content.find((c) => c.type === 'solutions');
+  if (!hero || !services || !solutions) return <span />;
+
   return (
     <div className={styles.home}>
       <div className={styles.hero}>
-        <Image src="/home-hero.jpg" className={styles.image} alt="Meeting at a job site" fill={true} priority />
+        <Image src={hero.image ?? ''} className={styles.image} alt={metadata?.title ?? ''} fill={true} priority />
         <TextOver direction="left" size="large">
           <div>
-            <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord('UNMATCHED DEMOLITION EXPERIENCE & EXPERTISE', 'strong') }}></h1>
-            <p className="semi-bold space">There is no job too big or small. Utah Demolition can provide the services you require, from complete demolition to selective demolition. <br /><strong>Dust Free Guarantee!</strong></p>
+            <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord(hero.title, 'strong') }}></h1>
+            <p className="semi-bold space">{hero.description}</p>
             <div>
-              <Link href="/" className="cta large">Free Consultation</Link>
+              <Link href={hero.ctal ?? "/"} className="cta large">{hero.cta}</Link>
             </div>
           </div>
         </TextOver>
       </div>
       <div className={`content pod shadow ${styles.services}`}>
-        <Image className={styles.technician} src="/technician.png" width={200} height={220} alt="Demolition Worker" />
+        <Image className={styles.technician} src={services.image ?? ''} width={200} height={220} alt={services.title} />
         <div className={styles.text}>
           <h2 className="has-icon">
-            <Image src="/hammer-icon.svg" alt="hammer" height={30} width={35} /> Demolition Contract Services
+            <Image src="/hammer-icon.svg" alt="hammer" height={30} width={35} /> {services.title}
           </h2>
-          <p className="space">When you work with us, you can expect   flexibility and a dynamic approach to your demolition plan and needs, unsurpassed customer service with an emphasis on client relations, an active, family-like approach to safety day in and day out, and a paramount amount of experience and expertise. Call today to learn more!</p>
+          <p className="space">{services.description}</p>
           <div className={styles.industries}>
-            <h3 className="has-icon">
-              <Image src="/residential.svg" alt="residential" width={25} height={25} />
-              Residential
-            </h3>
-            <h3 className="has-icon">
-              <Image src="/commercial.svg" alt="commercial" width={30} height={30} />
-              Commercial
-            </h3>
-            <h3 className="has-icon">
-              <Image src="/industrial.svg" alt="industrial" width={25} height={25} />
-              Industrial
-            </h3>
+            {services.list && JSON.parse(services.list).map((service) => {
+              return (
+                <h3 key={service} className="has-icon">
+                  <Image src={`/${service.toLowerCase()}` + '.svg'} alt={service} width={25} height={25} />
+                  {service}
+                </h3>
+              )
+            })}
           </div>
         </div>
       </div>
       <div className={styles.solutions}>
-        <Image src="/solutions.jpg" className={styles.heroImg} alt="Meeting at a job site" fill={true} />
+        <Image src={solutions.image ?? ''} className={styles.heroImg} alt={solutions.title} fill={true} />
         <TextOver direction="right" size="large">
           <div>
-            <h2>Customized Project Solutions</h2>
+            <h2>{solutions.title}</h2>
             <div className={styles.checks}>
-              <h3 className="has-icon">
-                <Image src="/check.svg" alt="industrial" width={25} height={25} />
-                Dust Free Guarantee
-              </h3>
-              <h3 className="has-icon">
-                <Image src="/check.svg" alt="industrial" width={25} height={25} />
-                Safety First Approach
-              </h3>
-              <h3 className="has-icon">
-                <Image src="/check.svg" alt="industrial" width={25} height={25} />
-                Time Saving & Efficient
-              </h3>
+              {solutions.list && JSON.parse(solutions.list).map((solution) => {
+                return (
+                  <h3 key={solution} className="has-icon">
+                    <Image src="/check.svg" alt={solution} width={25} height={25} />
+                    {solution}
+                  </h3>
+                )
+              })}
             </div>
-            <p className="semi-bold space">No matter the job size, we are always willing to supply you with a demo plan laid out in an easy-to-understand format with pictures and explanations. You deserve this kind of attention, and our design team is readily prepared. In addition to demolition plans and advice, we are capable of doing everything from pulling permits to coordinating inspections to unusual, out-of-the-ordinary dismantlement. We want you to feel confident when you are partnered with us.</p>
+            <p className="semi-bold space">{solutions.description}</p>
             <div>
-              <Link href="/" className="cta large">Get Started</Link>
+              <Link href={solutions.ctal ?? "/"} className="cta large">{solutions.cta}</Link>
             </div>
           </div>
         </TextOver>

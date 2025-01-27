@@ -67,6 +67,11 @@ a:hover {
   border: none;
 }
 
+.cta.small {
+  font-size: 0.8em;
+  padding: 8px 15px;
+}
+
 .cta.large {
   font-size: 1.2em;
   padding: 15px 25px;
@@ -117,6 +122,27 @@ ul.no-style {
   -webkit-box-shadow: 1px 4px 5px 0 rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 1px 4px 5px 0 rgba(0, 0, 0, 0.16);
   box-shadow: 1px 4px 5px 0 rgba(0, 0, 0, 0.16);
+}
+
+.icon-accent {
+  filter: invert(40%) sepia(34%) saturate(5822%) hue-rotate(10deg) brightness(92%) contrast(77%);
+}
+
+input {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+textarea {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 @media (max-width: 600px) {
