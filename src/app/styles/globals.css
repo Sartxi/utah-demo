@@ -55,6 +55,11 @@ a:hover {
   font-weight: 500;
 }
 
+.multi-btn {
+  display: flex;
+  gap: 5px;
+}
+
 .cta {
   background-color: var(--primary);
   padding: 10px 13px;
@@ -65,6 +70,14 @@ a:hover {
   display: inline-block;
   cursor: pointer;
   border: none;
+}
+
+.cta.red {
+  background-color: var(--shade3);
+}
+
+.cta.grey {
+  filter: grayscale(1);
 }
 
 .cta.small {
@@ -126,6 +139,10 @@ ul.no-style {
 
 .icon-accent {
   filter: invert(40%) sepia(34%) saturate(5822%) hue-rotate(10deg) brightness(92%) contrast(77%);
+}
+
+.right {
+  align-self: flex-end;
 }
 
 input {

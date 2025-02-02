@@ -64,10 +64,9 @@ export default function NavEdit({ nav, open, pages }: SaEditProps) {
           <NavForm nav={add || edit} type={add ? 'add' : 'edit'} pages={pages} />
         </div>
       )}
-
-      <div id="NavEdit" className={styles.naveditor}>
+      <div id="NavEdit" className={`${styles.naveditor} pod`}>
         <div>
-          <h4>Menu</h4>
+          <h3>Site Menu</h3>
           <div className={styles.actions}>
             {menu.map((slot: Nav) => {
               return (

@@ -2,8 +2,17 @@
 
 import { redirect } from "next/navigation";
 import { loginSession } from "../../../lib/session";
-import { createMeta, getUsers, updateMeta } from "../../../lib/db";
+import {
+  createMeta,
+  createPage,
+  getUsers,
+  updateMeta,
+  updatePage,
+  deletePage,
+} from "../../../lib/db";
 import bcrypt from "bcryptjs";
+import { Pages } from "../../../lib/schema";
+import * as schema from "../../../lib/schema";
 
 function compare(guess: string, pw: string) {
   return new Promise(async function (resolve, reject) {
@@ -72,4 +81,30 @@ export async function removeNav(id: number) {
 
 export async function reorderNav() {
   console.log("reorder the nav");
+}
+
+export async function editPage(formdata: FormData) {
+  const id = formdata.get("id");
+  if (!id) return false;
+
+  const data = {};
+  ["name", "type", "nest_id", "display_name"].forEach((attr) => {
+    const fd = formdata.get(attr);
+    let prop: string | number | undefined = fd?.toString();
+    if (fd && attr === "nest_id") prop = parseInt(fd.toString(), 10)
+    if (prop) data[attr] = prop ?? "";
+  });
+
+  if (id === "0") {
+    const created = await createPage(data as schema.Pages);
+    return created;
+  } else {
+    const updated = await updatePage(parseInt(id.toString()), data);
+    return updated;
+  }
+}
+
+export async function removePage(page: Pages) {
+  const removed = await deletePage(parseInt(page.id.toString(), 10));
+  return removed;
 }

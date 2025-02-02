@@ -17,7 +17,7 @@ export default function MetaEdit({ page, open }: SaEditProps) {
       setTitle(page.metadata.title);
       setDescription(page.metadata.description);
     }
-  }, [page, title, description]);
+  }, [page, title, description, edit]);
 
   if (!open) return '';
 
@@ -31,10 +31,10 @@ export default function MetaEdit({ page, open }: SaEditProps) {
 
   return (
     <div id="MetaEdit" className={`${styles.meta} pod`}>
-      <h4 className="has-icon">
-        <Image className={styles.edit} src={edit ? "/close.svg" : "/edit.svg"} alt="Edit Meta" width={22} height={22} onClick={() => setEdit(!edit)} />
-        Metadata
-      </h4>
+      <h3 className="has-icon">
+        <Image className={styles.edit} src={edit ? "/close.svg" : "/edit.svg"} alt="Edit Meta" width={25} height={25} onClick={() => setEdit(!edit)} />
+        Page Metadata
+      </h3>
       {edit ? (
         <Form action={onSubmit} className={styles.metaform}>
           <input type="hidden" name="id" value={page?.metadata?.id} />

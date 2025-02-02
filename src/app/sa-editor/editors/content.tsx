@@ -2,10 +2,10 @@ import styles from "@/app/styles/editor.module.css";
 import { SaEditProps } from "../data";
 
 export default function ContentEdit({ open }: SaEditProps) {
-  if (!open) return <span />;
+  if (!open) return '';
   return (
-    <div className={styles.page}>
-      <h4>Content</h4>
+    <div className={`${styles.page} pod`}>
+      <h3>Page Content</h3>
     </div>
   )
 };

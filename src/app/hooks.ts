@@ -35,3 +35,14 @@ export function useRouteRefresh(name: string | undefined, refresh: boolean) {
     if (refresh && name && !path.includes(name)) router.refresh();
   }, [router, refresh, pathname, name]);
 }
+
+export function useClickOutside(el: string, enabled: boolean, callback: () => void) {
+  return useEffect(() => {
+    const handleCloseOnClick = (e) => {
+      const closeEl = document.getElementById(el);
+      if (enabled && !closeEl?.contains(e.target)) callback();
+    }
+    document.addEventListener('click', handleCloseOnClick);
+    return () => document.removeEventListener('click', handleCloseOnClick);
+  }, [el, enabled, callback]);
+}

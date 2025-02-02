@@ -13,7 +13,7 @@ async function getCurrentPage(pages: Pages[]) {
 export default async function SaWidget() {
   const session = await getSession();
   const nav = await getNav();
-  const pages = await getPages();
+  const pages = await getPages();  
   const path = await getCurrentPage(pages);
   const page: PageDetails | null = await getPage(path);
 

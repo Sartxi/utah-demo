@@ -89,3 +89,24 @@ export const updateMeta = async (id: number, data: unknown) => {
     return true;
   } else return false;
 };
+
+export const createPage = async (data: schema.Pages) => {
+  if (data) {
+    await db.insert(schema.pages).values(data).returning();
+    return true;
+  } else return false;
+};
+
+export const updatePage = async (id: number, data: unknown) => {
+  if (data) {
+    await db.update(schema.pages).set(data).where(eq(schema.pages.id, id));
+    return true;
+  } else return false;
+};
+
+export const deletePage = async (id: number) => {
+  if (id) {
+    await db.delete(schema.pages).where(eq(schema.pages.id, id));
+    return true;
+  } else return false;
+}

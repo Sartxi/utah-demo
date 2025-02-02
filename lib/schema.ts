@@ -89,6 +89,8 @@ export const pages = pgTable(
     id: integer("id").primaryKey(),
     name: text("name").notNull(),
     type: text("type").notNull(),
+    nest_id: integer("nest_id"),
+    display_name: text("display_name")
   },
   (page) => [uniqueIndex("unique_idx").on(page.id)]
 );
@@ -97,6 +99,8 @@ export interface Pages {
   id: number;
   name: string;
   type: string;
+  nest_id: number | null;
+  display_name: string | null;
 }
 
 export const content = pgTable(
