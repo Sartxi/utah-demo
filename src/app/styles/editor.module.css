@@ -131,6 +131,7 @@
 .editarea {
   width: 100%;
   padding-right: 20px;
+  padding-bottom: 15px;
 }
 
 .header {
@@ -161,7 +162,7 @@
 }
 
 .full {
-  height: 100%;
+  height: calc(100% - 111px);
 }
 
 .page {
@@ -425,4 +426,29 @@
 
 .cta {
   align-items: flex-end;
+}
+
+.contentlist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  height: calc(100% - 40px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contenteditarea {
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.editform {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

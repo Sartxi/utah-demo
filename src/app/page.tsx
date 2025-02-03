@@ -9,7 +9,7 @@ export default async function Home() {
   const { content, metadata } = await getPage('home');
   if (!content) return <span />;
   const hero = content.find((c) => c.type === 'hero');
-  const services = content.find((c) => c.type === 'service');
+  const services = content.find((c) => c.type === 'service pod');
   const solutions = content.find((c) => c.type === 'solutions');
   if (!hero || !services || !solutions) return <span />;
 

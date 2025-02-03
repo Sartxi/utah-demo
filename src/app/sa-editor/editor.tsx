@@ -107,11 +107,11 @@ export default function SaEditor({ session, nav, page, pages }: SaEditorProps) {
           </div>
           <div className={`${styles.details} ${editor === 'details' ? styles.full : ''}`}>
             <div className={`${styles.title} pod`}>
-              Page: <h3>{page?.page?.name}</h3>
-              Display Name: {page?.page?.display_name}
+              <h3>{page?.page?.name}</h3>
+              {page?.page?.display_name && <span>Display Name: <strong>{page.page.display_name}</strong></span>}
             </div>
             <MetaEdit page={page} open={editor === 'details'} />
-            <ContentEdit open={editor === 'details'} />
+            <ContentEdit page={page} open={editor === 'details'} />
           </div>
         </div>
       </div>

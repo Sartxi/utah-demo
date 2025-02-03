@@ -148,6 +148,33 @@ ul.no-style {
   margin-left: auto;
 }
 
+.content-label {
+  display: flex;
+  padding: 10px;
+  border-radius: 7px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.content-label:hover {
+  filter: brightness(90%);
+}
+
+.hero-label {
+  color: white;
+  background-color: var(--primary);
+}
+
+.service-pod-label {
+  color: white;
+  background-color: var(--secondary);
+}
+
+.solutions-label {
+  color: white;
+  background-color: var(--complementary);
+}
+
 input {
   display: block;
   padding: 10px;
