@@ -3,40 +3,65 @@ import { Nav, Pages } from "../../../../lib/schema";
 import { SaEditProps } from "../data";
 import { useEffect, useState } from "react";
 import { getMenu } from "@/app/util";
-import { addNav, editNav } from "../actions";
+import { editNav, removeNav } from "../actions";
 import Image from "next/image";
-import Form from "next/form";
+import Select from "../elements/select";
+import { useRouter } from "next/navigation";
 
 interface NavFormProps {
-  type: string;
   nav: Nav | undefined;
   pages: Pages[] | undefined;
+  place: number;
+  close: () => void;
 }
 
-function NavForm({ type, nav, pages }: NavFormProps) {
-  const [name, setName] = useState(nav?.name);
-  const [href, setHref] = useState(nav?.href);
+function getPageHref({ type, name }: Pages) {
+  return `/${type === 'services' ? `services/${name}` : name}`
+}
 
+function NavForm({ nav, place, pages, close }: NavFormProps) {
+  const router = useRouter();
+  const [ctaname, setCtaName] = useState<string | undefined>(nav?.name);
+  const [page, setPage] = useState<string | undefined>(pages?.find(p => getPageHref(p) === nav?.href)?.name);
   if (!nav) return '';
 
-  console.log(pages);
-
-  const onSubmit = async (formdata: FormData) => {
-    if (type === 'edit') await editNav(formdata);
-    if (type === 'add') await addNav(formdata);
+  const onSubmit = async () => {
+    if (page && pages) {
+      const { name, type } = pages.find(p => p.name === page) ?? { name: "", type: "" };
+      const data = { ...nav, name, place, href: getPageHref({ name, type } as Pages) };
+      if (nav.cta && ctaname) data.name = ctaname;
+      const updated = await editNav(data);
+      if (updated) {
+        router.refresh();
+        close();
+      }
+    }
   };
 
+  const onRemove = async () => {
+    const removed = await removeNav(nav.id);
+    if (removed) {
+      router.refresh();
+      close();
+    }
+  }
+
   return (
-    <Form action={onSubmit}>
-      <input type="hidden" name="id" value={nav.id} />
-      <input type="hidden" name="place" value={nav.place} />
-      <input type="hidden" name="cta" value={nav.cta.toString()} />
-      <label>Name</label>
-      <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
-      <label>Page</label>
-      <input type="text" name="href" value={href} onChange={(e) => setHref(e.target.value)} />
-      <button className="cta" type="submit">Submit</button>
-    </Form>
+    <div className={styles.pageform}>
+      <h3>Menu Item</h3>
+      {nav.cta ? (
+        <>
+          <label>Name</label>
+          <input type="text" name="name" placeholder="Button Text" value={ctaname} onChange={(e) => setCtaName(e.target.value)} />
+        </>
+      ) : ''}
+      <Select value={page ?? nav.name} values={pages?.map(page => page.name) ?? []} changed={(value) => setPage(value)} />
+      <div className="multi-btn">
+        <button className="cta" type="button" onClick={() => onSubmit()}>Save</button>
+        <button className="cta grey" type="button" onClick={() => close()}>Cancel</button>
+        {nav.id !== 0 && <button className="cta red right" type="button" onClick={() => onRemove()}>Remove</button>}
+      </div>
+    </div>
   )
 }
 
@@ -48,6 +73,7 @@ export default function NavEdit({ nav, open, pages }: SaEditProps) {
   const [showModal, setShowModal] = useState(false);
   const [add, setAdd] = useState<Nav>();
   const [edit, setEdit] = useState<Nav>();
+  const [place, setPlace] = useState<number>(0);
 
   useEffect(() => {
     if (add || edit) setShowModal(true);
@@ -55,53 +81,72 @@ export default function NavEdit({ nav, open, pages }: SaEditProps) {
 
   if (!nav || !open) return '';
   const { menu, cta } = getMenu(nav);
-  const showAddBtn = menu.length < 4 && !add;
+  const available = pages?.filter(p => !p.nest_id && p.name !== 'home' && !nav.find(n => p.name === n.name)) ?? [];
+  const showAddBtn = menu.length < 4 && !add && available.length;
 
   return (
     <>
       {showModal && (
-        <div className={styles.modal}>
-          <NavForm nav={add || edit} type={add ? 'add' : 'edit'} pages={pages} />
-        </div>
+        <>
+          <div className={`${styles.formblock} ${styles.modal} pod`}>
+            <NavForm
+              nav={add || edit}
+              place={place}
+              pages={add?.cta || edit?.cta ? pages : available}
+              close={() => {
+                setEdit(undefined);
+                setAdd(undefined);
+                setShowModal(false);
+              }} />
+          </div>
+          <div className={styles.overlay} />
+        </>
       )}
       <div id="NavEdit" className={`${styles.naveditor} pod`}>
-        <div>
+        <div className={styles.menuEdit}>
           <h3>Site Menu</h3>
           <div className={styles.actions}>
-            {menu.map((slot: Nav) => {
+            {menu.sort((a, b) => a.place - b.place).map((slot, i) => {
               return (
-                <div key={`slot${slot.name}`} className={styles.navslot} onClick={() => setEdit(slot)}>
+                <div key={`slot${slot.name}`} className={styles.navslot} onClick={() => {
+                  setEdit(slot);
+                  setPlace(i + 1);
+                }}>
                   {slot.name}
+                  <span>{slot.href}</span>
                 </div>
               )
             })}
-            {showAddBtn && (
+            {showAddBtn ? (
               <Image
                 className={styles.addbtn}
                 src="/add.svg"
                 alt="Add Menu Item"
-                width={70}
-                height={70}
-                onClick={() => setAdd(newNavItem(menu.length))} />
-            )}
+                width={50}
+                height={50}
+                onClick={() => {
+                  setAdd(newNavItem(menu.length + 1));
+                  setPlace(menu.length + 1);
+                }} />
+            ) : ''}
           </div>
         </div>
-        <div>
-          <h4>Call to Action</h4>
+        <div className={styles.cta}>
+          <h4>Menu Button</h4>
           {cta ? (
-            <div className={styles.navslot}>
+            <div className={styles.navslot} onClick={() => setEdit(cta)}>
               {cta.name}
+              <span>{cta.href}</span>
             </div>
           ) : (
-            <div className={styles.navslot}>
-              <Image
-                className={styles.addbtn}
-                src="/add.svg"
-                alt="Add Menu Item"
-                width={70}
-                height={70}
-                onClick={() => setAdd(newNavItem(0, true))} />
-            </div>
+            <Image
+              className={styles.addbtn}
+              src="/add.svg"
+              alt="Add Menu Item"
+              width={50}
+              height={50}
+              onClick={() => setAdd(newNavItem(0, true))}
+            />
           )}
         </div>
       </div>

@@ -9,7 +9,6 @@ export default async function Page(props: { params: Promise<{ id: string, servic
 
   console.log(params);
   
-
   if (!id) return <span />;
   const crumbs: Crumb[] = [{ text: 'Commercial', page: 'commercial' }, { text: id }];
 

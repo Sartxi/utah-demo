@@ -9,10 +9,35 @@ import {
   updateMeta,
   updatePage,
   deletePage,
+  createNav,
+  updateNav,
+  deleteNav,
 } from "../../../lib/db";
 import bcrypt from "bcryptjs";
 import { Pages } from "../../../lib/schema";
 import * as schema from "../../../lib/schema";
+
+interface FormatAttrs {
+  attr: string;
+  type: "number" | "string" | "boolean";
+}
+
+function formatFormData(attrs: FormatAttrs[] | string[], form: FormData) {
+  const data = {};
+  attrs.forEach((dt) => {
+    const strArr = typeof attrs[0] === "string";
+    const attr = strArr ? dt : dt.attr;
+    const type = strArr ? 'string' : dt.type;
+    const fd = form.get(attr);
+    if (fd) {
+      let prop: string | number | boolean = fd.toString();
+      if (type === "number") prop = parseInt(prop, 10);
+      if (type === "boolean") prop = Boolean(prop);
+      data[attr] = prop as string | number | boolean;
+    }
+  });
+  return data;
+}
 
 function compare(guess: string, pw: string) {
   return new Promise(async function (resolve, reject) {
@@ -49,13 +74,7 @@ export async function updataMeta(formData: FormData) {
     const shouldUpdate =
       metaPage === pageId || (!metaPage && parseInt(pageId.toString()) === 1);
 
-    const data = {};
-    ["title", "description"].forEach((attr) => {
-      const fd = formData.get(attr);
-      const prop = fd?.toString();
-      data[attr] = prop ?? "";
-    });
-
+    const data = formatFormData(["title", "description"], formData);
     if (shouldUpdate) {
       const updated = await updateMeta(parseInt(id.toString()), data);
       return updated;
@@ -67,16 +86,21 @@ export async function updataMeta(formData: FormData) {
   }
 }
 
-export async function addNav(formdata: FormData) {
-  console.log("add a nav item", formdata);
-}
-
-export async function editNav(formdata: FormData) {
-  console.log("edit a nav item", formdata);
+export async function editNav(data: schema.Nav) {
+  if (data.id === 0) {
+    const newNav = {};
+    ["name", "href", "place", "cta"].forEach(d => newNav[d] = data[d]);
+    const created = await createNav(newNav as schema.Nav);
+    return created;
+  } else {
+    const updated = await updateNav(data.id, data);
+    return updated;
+  }
 }
 
 export async function removeNav(id: number) {
-  console.log("remove a nav item", id);
+  const removed = await deleteNav(id);
+  return removed;
 }
 
 export async function reorderNav() {
@@ -91,7 +115,7 @@ export async function editPage(formdata: FormData) {
   ["name", "type", "nest_id", "display_name"].forEach((attr) => {
     const fd = formdata.get(attr);
     let prop: string | number | undefined = fd?.toString();
-    if (fd && attr === "nest_id") prop = parseInt(fd.toString(), 10)
+    if (fd && attr === "nest_id") prop = parseInt(fd.toString(), 10);
     if (prop) data[attr] = prop ?? "";
   });
 
@@ -99,7 +123,10 @@ export async function editPage(formdata: FormData) {
     const created = await createPage(data as schema.Pages);
     return created;
   } else {
-    const updated = await updatePage(parseInt(id.toString()), data);
+    const updated = await updatePage(
+      parseInt(id.toString()),
+      data as schema.Pages
+    );
     return updated;
   }
 }

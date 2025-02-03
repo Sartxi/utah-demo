@@ -110,3 +110,24 @@ export const deletePage = async (id: number) => {
     return true;
   } else return false;
 }
+
+export const createNav = async (data: schema.Nav) => {
+  if (data) {
+    await db.insert(schema.nav).values(data).returning();
+    return true;
+  } else return false;
+};
+
+export const updateNav = async (id: number, data: schema.Nav) => {
+  if (data) {
+    await db.update(schema.nav).set(data).where(eq(schema.nav.id, id));
+    return true;
+  } else return false;
+};
+
+export const deleteNav = async (id: number) => {
+  if (id) {
+    await db.delete(schema.nav).where(eq(schema.nav.id, id));
+    return true;
+  } else return false;
+}

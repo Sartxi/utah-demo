@@ -84,7 +84,6 @@ function PageForm({ page, pages, close }: { page: Pages, pages: Pages[] | undefi
     <>
       <div className={`${styles.formblock} ${styles.modal} pod`}>
         <h3>{isNew ? 'Add' : 'Edit'} Page</h3>
-        <hr />
         <br />
         <Form className={styles.pageform} action={onSubmit}>
           <div>
