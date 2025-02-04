@@ -43,7 +43,7 @@ function useDragToSize() {
   useEffect(() => {
     const mousemove = (event) => {
       if (down) {
-        const val = (window.innerHeight - event.pageY) + 12;
+        const val = (window.innerHeight - event.pageY) + 12 + window.scrollY;
         if (val > 400) {
           setSticky(val.toString());
           setHeight(val);

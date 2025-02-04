@@ -115,6 +115,7 @@ export const content = pgTable(
     ctal: text("ctal"),
     image: text("image"),
     list: text("list"),
+    order: integer("order").notNull().unique(),
   },
   (content) => [uniqueIndex("unique_idx").on(content.id)]
 );
@@ -129,4 +130,5 @@ export interface Content {
   ctal: string | null;
   image: string | null;
   list: string | null;
+  order: number
 }

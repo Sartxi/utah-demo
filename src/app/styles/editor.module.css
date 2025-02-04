@@ -163,6 +163,7 @@
 
 .full {
   height: calc(100% - 111px);
+  overflow-y: auto;
 }
 
 .page {
@@ -450,5 +451,25 @@
 .editform {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 20px;
+}
+
+.listedit {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  gap: 2px;
+}
+
+.listitemedit {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.listeditor,
+.listeditform {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

@@ -66,3 +66,14 @@
 .active {
   background-color: #ddd;
 }
+
+.sainput {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.sainput::before {
+  content: attr("data-label");
+  width: 20px;
+}

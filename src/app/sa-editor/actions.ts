@@ -103,10 +103,6 @@ export async function removeNav(id: number) {
   return removed;
 }
 
-export async function reorderNav() {
-  console.log("reorder the nav");
-}
-
 export async function editPage(formdata: FormData) {
   const id = formdata.get("id");
   if (!id) return false;
@@ -134,4 +130,12 @@ export async function editPage(formdata: FormData) {
 export async function removePage(page: Pages) {
   const removed = await deletePage(parseInt(page.id.toString(), 10));
   return removed;
+}
+
+export async function editContent(formdata: FormData) {
+  console.log(formdata);
+}
+
+export async function removeContent(formdata: FormData) {
+  console.log(formdata);
 }

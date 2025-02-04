@@ -109,7 +109,7 @@ export const deletePage = async (id: number) => {
     await db.delete(schema.pages).where(eq(schema.pages.id, id));
     return true;
   } else return false;
-}
+};
 
 export const createNav = async (data: schema.Nav) => {
   if (data) {
@@ -130,4 +130,24 @@ export const deleteNav = async (id: number) => {
     await db.delete(schema.nav).where(eq(schema.nav.id, id));
     return true;
   } else return false;
-}
+};
+
+export const updateContent = async (data: schema.Content) => {
+  if (data.id) {
+    await db
+      .update(schema.content)
+      .set(data)
+      .where(eq(schema.content.id, data.id));
+    return true;
+  } else {
+    await db.insert(schema.content).values(data).returning();
+    return true;
+  }
+};
+
+export const deleteContent = async (id: number) => {
+  if (id) {
+    await db.delete(schema.content).where(eq(schema.content.id, id));
+    return true;
+  } else return false;
+};
