@@ -19,7 +19,7 @@ export default async function Home() {
         <Image src={hero.image ?? ''} className={styles.image} alt={metadata?.title ?? ''} fill={true} priority />
         <TextOver direction="left" size="large">
           <div>
-            <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord(hero.title, 'strong') }}></h1>
+            <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord(hero.title ?? "", 'strong') }}></h1>
             <p className="semi-bold space">{hero.description}</p>
             <div>
               <Link href={hero.ctal ?? "/"} className="cta large">{hero.cta}</Link>
@@ -28,7 +28,7 @@ export default async function Home() {
         </TextOver>
       </div>
       <div className={`content pod shadow ${styles.services}`}>
-        <Image className={styles.technician} src={services.image ?? ''} width={200} height={220} alt={services.title} />
+        <Image className={styles.technician} src={services.image ?? ''} width={200} height={220} alt={services.title ?? ""} />
         <div className={styles.text}>
           <h2 className="has-icon">
             <Image src="/hammer-icon.svg" alt="hammer" height={30} width={35} /> {services.title}
@@ -47,7 +47,7 @@ export default async function Home() {
         </div>
       </div>
       <div className={styles.solutions}>
-        <Image src={solutions.image ?? ''} className={styles.heroImg} alt={solutions.title} fill={true} />
+        <Image src={solutions.image ?? ''} className={styles.heroImg} alt={solutions.title ?? ""} fill={true} />
         <TextOver direction="right" size="large">
           <div>
             <h2>{solutions.title}</h2>
