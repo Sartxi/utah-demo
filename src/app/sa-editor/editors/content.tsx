@@ -7,6 +7,7 @@ import SaInput from "../elements/input";
 import SaTextarea from "../elements/textarea";
 import Image from "next/image";
 import { editContent } from "../actions";
+import { useRouter } from "next/navigation";
 
 interface ContentEdit {
   content: Content;
@@ -65,8 +66,17 @@ function ContentListEditor(props: { list: string | null }) {
 }
 
 function ContentEditor(props: ContentEdit) {
+  const router = useRouter();
   const { content, open, toggle } = props;
   const { id, type, title, image, description, cta, ctal, list } = content;
+
+  const onSubmit = async (data: FormData) => {
+    const updated = await editContent(data);
+    if (updated) {
+      router.refresh();
+      close();
+    }
+  };
 
   return (
     <>
@@ -75,9 +85,9 @@ function ContentEditor(props: ContentEdit) {
         onClick={() => toggle(open ? undefined : type)}>{type}</span>
       {open ? (
         <div className={styles.contenteditarea}>
-          <Form className={styles.editform} action={editContent}>
+          <Form className={styles.editform} action={onSubmit}>
             <div className="multi-btn">
-              <SaInput type="text" name="name" initValue={title} label="Name" />
+              <SaInput type="text" name="title" initValue={title ?? ""} label="Title" />
               <SaInput type="text" name="image" initValue={image ?? ""} label="Image" />
             </div>
             <SaTextarea rows={4} name="description" initValue={description} label="Description" />

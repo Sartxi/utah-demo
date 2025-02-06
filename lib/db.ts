@@ -13,10 +13,15 @@ export function getPageData(pages: schema.Pages[], url: string) {
   let pagename = "home";
   if (url) {
     const { pathname } = new URL(url);
-    const name = pathname.replace("/", "");
-    if (name.length) pagename = name;
+    const name = pathname.split("/");
+    if (name && name.length) pagename = name.pop() ?? pagename;
   }
-  return pages.find((pg) => pg.name === pagename) ?? { name: pagename, id: 1 };
+  return (
+    pages.find((pg) => pg.name === pagename.replaceAll("-", " ")) ?? {
+      name: pagename,
+      id: 1,
+    }
+  );
 }
 
 export const db = drizzle(sql, { schema });
@@ -92,7 +97,10 @@ export const updateMeta = async (id: number, data: unknown) => {
 
 export const createPage = async (data: schema.Pages) => {
   if (data) {
-    await db.insert(schema.pages).values(data).returning();
+    const newPage = await db.insert(schema.pages).values(data).returning();
+    const { id, name, display_name } = newPage[0];
+    const hero = { title: display_name ?? name, page: id, type: 'hero', order: 1 } as schema.Content;
+    await db.insert(schema.content).values(hero).returning();
     return true;
   } else return false;
 };
@@ -132,12 +140,12 @@ export const deleteNav = async (id: number) => {
   } else return false;
 };
 
-export const updateContent = async (data: schema.Content) => {
-  if (data.id) {
-    await db
-      .update(schema.content)
-      .set(data)
-      .where(eq(schema.content.id, data.id));
+export const updateContent = async (
+  id: number | null,
+  data: schema.Content
+) => {
+  if (id) {
+    await db.update(schema.content).set(data).where(eq(schema.content.id, id));
     return true;
   } else {
     await db.insert(schema.content).values(data).returning();

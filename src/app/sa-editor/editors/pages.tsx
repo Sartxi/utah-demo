@@ -36,7 +36,7 @@ function Branch({ page, editing, edit, nest }: { page: Pages, editing: boolean, 
       onMouseLeave={() => setHover(false)}>
       {nest && <span className={styles.line} />}
       <Image src={`/${page.type !== 'required' && (hover || editing) ? "edit" : "file"}.svg`} alt={`${page.name} page`} width={20} height={20} />
-      <strong>{page.name}</strong><span>{`/${nest ? `${nest}/${pagepath}` : pagepath}`}</span>
+      <strong>{page.name}</strong><span>{`/${page.type === 'services' || page.type === 'service' ? 'services/' : ''}${nest ? `${nest}/${pagepath}` : pagepath}`}</span>
     </div>
   )
 }

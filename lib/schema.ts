@@ -109,13 +109,13 @@ export const content = pgTable(
     id: integer("id").primaryKey(),
     page: integer("page").notNull(),
     type: text("type").notNull(),
-    title: text("title").notNull(),
+    title: text("title"),
     description: text("description"),
     cta: text("cta"),
     ctal: text("ctal"),
     image: text("image"),
     list: text("list"),
-    order: integer("order").notNull().unique(),
+    order: integer("order").notNull(),
   },
   (content) => [uniqueIndex("unique_idx").on(content.id)]
 );
@@ -124,7 +124,7 @@ export interface Content {
   id: number;
   page: number;
   type: string;
-  title: string;
+  title: string | null;
   description: string | null;
   cta: string | null;
   ctal: string | null;
