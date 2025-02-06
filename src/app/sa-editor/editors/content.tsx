@@ -1,5 +1,5 @@
 import styles from "@/app/styles/editor.module.css";
-import { SaEditProps } from "../data";
+import { SaEditorProps, SaEditProps } from "../data";
 import type { Content } from "../../../../lib/schema";
 import { useEffect, useState } from "react";
 import Form from "next/form";
@@ -107,6 +107,13 @@ function ContentEditor(props: ContentEdit) {
   )
 }
 
+function AddContent({ page }: SaEditorProps) {
+  if (!page?.page) return <span />;
+  const canAdd = ["custom", "services", "service"].includes(page.page.type);
+  if (!canAdd) return <span />;
+  return <span />;
+}
+
 export default function ContentEdit({ open, page }: SaEditProps) {
   const [edit, setEdit] = useState<Content["type"] | undefined>();
   if (!open) return '';
@@ -116,6 +123,7 @@ export default function ContentEdit({ open, page }: SaEditProps) {
       <div className={styles.contentlist}>
         {page?.content?.sort((a, b) => a.order - b.order).map(c => <ContentEditor key={c.id} content={c} open={edit === c.type} toggle={setEdit} />)}
       </div>
+      <AddContent page={page} />
     </div>
   )
 };

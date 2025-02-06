@@ -13,8 +13,8 @@ export function getPageData(pages: schema.Pages[], url: string) {
   let pagename = "home";
   if (url) {
     const { pathname } = new URL(url);
-    const name = pathname.split("/");
-    if (name && name.length) pagename = name.pop() ?? pagename;
+    const name = pathname.split("/").pop();
+    if (name && name !== "") pagename = name;
   }
   return (
     pages.find((pg) => pg.name === pagename.replaceAll("-", " ")) ?? {
