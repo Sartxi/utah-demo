@@ -112,7 +112,7 @@ export const content = pgTable(
     title: text("title"),
     description: text("description"),
     cta: text("cta"),
-    ctal: text("ctal"),
+    href: text("href"),
     image: text("image"),
     list: text("list"),
     order: integer("order").notNull(),
@@ -124,11 +124,11 @@ export interface Content {
   id: number;
   page: number;
   type: string;
+  order: number;
   title: string | null;
   description: string | null;
   cta: string | null;
-  ctal: string | null;
+  href: string | null;
   image: string | null;
   list: string | null;
-  order: number
 }

@@ -13,6 +13,7 @@ import {
   updateNav,
   deleteNav,
   updateContent,
+  deleteContent,
 } from "../../../lib/db";
 import bcrypt from "bcryptjs";
 import { Pages } from "../../../lib/schema";
@@ -136,13 +137,15 @@ export async function removePage(page: Pages) {
 export async function editContent(formData: FormData) {
   const id = formData.get("id");
   const title = formData.get("title");
-  const data = formatFormData(["title", "image", "description", "cta", "ctal", "list"], formData) as schema.Content;
-  if (JSON.parse(data?.list ?? "")?.length == 0) data.list = null;
+  const feilds = ["title", "page", "image", "description", "cta", "href", "type", "list", "order"];
+  const data = formatFormData(feilds, formData) as schema.Content;
+  if (data?.list && JSON.parse(data?.list ?? "")?.length == 0) data.list = null;
   if (title === "") data.title = null;
   const update = await updateContent(parseInt(id?.toString() ?? "", 10), data);
   return update;
 }
 
-export async function removeContent(formdata: FormData) {
-  console.log(formdata);
+export async function removeContent(id: number) {
+  const removed = await deleteContent(id);
+  return removed;
 }

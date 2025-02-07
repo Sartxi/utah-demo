@@ -48,7 +48,7 @@ const content = [
     description:
       "There is no job too big or small. Utah Demolition can provide the services you require, from complete demolition to selective demolition. Dust Free Guarantee!",
     cta: "Free consultation",
-    ctal: "/contact",
+    href: "/contact",
     image: "/home-hero.jpg",
     list: null,
   },
@@ -60,7 +60,7 @@ const content = [
     description:
       "When you work with us, you can expect flexibility and a dynamic approach to your demolition plan and needs, unsurpassed customer service with an emphasis on client relations, an active, family-like approach to safety day in and day out, and a paramount amount of experience and expertise. Call today to learn more!",
     cta: null,
-    ctal: null,
+    href: null,
     image: "/technician.png",
     list: '["Residential","Commercial","Industrial"]',
   },
@@ -72,7 +72,7 @@ const content = [
     description:
       "No matter the job size, we are always willing to supply you with a demo plan laid out in an easy-to-understand format with pictures and explanations. You deserve this kind of attention, and our design team is readily prepared. In addition to demolition plans and advice, we are capable of doing everything from pulling permits to coordinating inspections to unusual, out-of-the-ordinary dismantlement. We want you to feel confident when you are partnered with us.",
     cta: "Get Started",
-    ctal: "/contact",
+    href: "/contact",
     image: "/solutions.jpg",
     list: '["Dust Free Guarantee","Safety First Approach","Time Saving & Efficient"]',
   },

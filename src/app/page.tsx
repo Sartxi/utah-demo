@@ -22,7 +22,7 @@ export default async function Home() {
             <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord(hero.title ?? "", 'strong') }}></h1>
             <p className="semi-bold space">{hero.description}</p>
             <div>
-              <Link href={hero.ctal ?? "/"} className="cta large">{hero.cta}</Link>
+              <Link href={hero.href ?? "/"} className="cta large">{hero.cta}</Link>
             </div>
           </div>
         </TextOver>
@@ -63,7 +63,7 @@ export default async function Home() {
             </div>
             <p className="semi-bold space">{solutions.description}</p>
             <div>
-              <Link href={solutions.ctal ?? "/"} className="cta large">{solutions.cta}</Link>
+              <Link href={solutions.href ?? "/"} className="cta large">{solutions.cta}</Link>
             </div>
           </div>
         </TextOver>

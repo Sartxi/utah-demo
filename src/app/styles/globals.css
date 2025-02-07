@@ -154,6 +154,7 @@ ul.no-style {
   border-radius: 7px;
   text-transform: capitalize;
   cursor: pointer;
+  background-color: #eee;
 }
 
 .content-label:hover {

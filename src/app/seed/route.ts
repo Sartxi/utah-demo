@@ -120,7 +120,7 @@ async function seedContent() {
       title VARCHAR(255) NOT NULL,
       description TEXT,
       cta: VARCHAR(255),
-      ctal: VARCHAR(255),
+      href: VARCHAR(255),
       image: VARCHAR(255),
       list: TEXT,
     );
@@ -129,8 +129,8 @@ async function seedContent() {
   const insertedContent = await Promise.all(
     content.map(async (n) => {
       return client.sql`
-        INSERT INTO content (id, page, type, title, description, cta, ctal, image, list)
-        VALUES (${n.id}, ${n.page}, ${n.type}, ${n.title}, ${n.description}, ${n.cta}, ${n.ctal}, ${n.image}, ${n.list})
+        INSERT INTO content (id, page, type, title, description, cta, href, image, list)
+        VALUES (${n.id}, ${n.page}, ${n.type}, ${n.title}, ${n.description}, ${n.cta}, ${n.href}, ${n.image}, ${n.list})
         ON CONFLICT (id) DO NOTHING;
       `;
     })
