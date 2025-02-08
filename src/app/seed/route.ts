@@ -18,7 +18,7 @@ async function seedUsers() {
       city: TEXT,
       state: TEXT,
       zip: VARCHAR(10),
-      linkedn: VARCHAR(255),
+      linkdin: VARCHAR(255),
       instagram: VARCHAR(255),
       facebook: VARCHAR(255),
       contact: BOOLEAN NOT NULL,
@@ -29,8 +29,8 @@ async function seedUsers() {
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       return client.sql`
-        INSERT INTO users (id, name, email, password, edited, phone, address, city, state, zip, linkedn, instagram, facebook, contact)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword}, ${user.edited}, ${user.phone}, ${user.address}, ${user.city}, ${user.state}, ${user.zip}, ${user.linkedn}, ${user.instagram}, ${user.facebook}, ${user.contact})
+        INSERT INTO users (id, name, email, password, edited, phone, address, city, state, zip, linkdin, instagram, facebook, contact)
+        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword}, ${user.edited}, ${user.phone}, ${user.address}, ${user.city}, ${user.state}, ${user.zip}, ${user.linkdin}, ${user.instagram}, ${user.facebook}, ${user.contact})
         ON CONFLICT (id) DO NOTHING;
       `;
     })

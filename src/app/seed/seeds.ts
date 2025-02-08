@@ -10,7 +10,7 @@ const users = [
     city: null,
     state: null,
     zip: null,
-    linkedn: null,
+    linkdin: null,
     instagram: null,
     facebook: null,
     contact: false,

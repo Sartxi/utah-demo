@@ -20,7 +20,7 @@ export const users = pgTable(
     city: text("city"),
     state: text("state"),
     zip: text("zip"),
-    linkedn: text("linkedn"),
+    linkdin: text("linkdin"),
     instagram: text("instagram"),
     facebook: text("facebook"),
     contact: boolean().notNull(),
@@ -39,7 +39,7 @@ export interface User {
   city?: string;
   state?: string;
   zip?: string;
-  linkedn?: string;
+  linkdin?: string;
   instagram?: string;
   facebook?: string;
   contact: boolean;
