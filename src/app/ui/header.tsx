@@ -8,17 +8,34 @@ import { Nav } from "../../../lib/schema";
 import { getMenu } from "../util";
 
 function NavList({ nav }: { nav: Nav[] }) {
+  const [hovered, setHovered] = useState<string | null>(null);
   const { menu, cta } = getMenu(nav);
+
   return (
     <>
-      {menu.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
-      {cta && <Link href={cta.href ?? "/contact"} className="cta">{cta.name}</Link>}
+      {menu.map((item, i) => {
+        return (
+          <div key={item.name} className={styles.menuitem} onMouseOver={() => setHovered(item.name)} onMouseLeave={() => setHovered(null)}>
+            <Link href={item.href}>{item.name}</Link>
+            {hovered === item.name && item.isParent && item.children?.length ? (
+              <div className={`${styles.dropdown} ${i === (menu.length - 1) ? styles.openRight : ''}`}>
+                  {item.children.map((c) => {
+                    const href = `/services/${item.name}/${c.name.replaceAll(' ', '-')}`;
+                    return <Link key={c.name} href={href}>{c.display_name ?? c.name}</Link>;
+                  })}
+              </div>
+            ) : ''}
+          </div>
+        )
+      })}
+      {cta && <Link href={cta.href ?? "/contact"} className={`cta ${styles.menucta}`}>{cta.name}</Link>}
     </>
   )
 }
 
 function Menu({ nav }: { nav: Nav[] }) {
   const [drawer, setDrawer] = useState(false);
+  const { menu, cta } = getMenu(nav);
   return (
     <div>
       <div className={`${drawer ? styles.change : ''}`} onClick={() => setDrawer(!drawer)}>
@@ -28,7 +45,8 @@ function Menu({ nav }: { nav: Nav[] }) {
       </div>
       {drawer ? (
         <div className={`${styles.drawer} shadow`}>
-          <NavList nav={nav} />
+          {menu.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
+          {cta && <Link href={cta.href ?? "/contact"} className="cta">{cta.name}</Link>}
         </div>
       ) : ''}
     </div>

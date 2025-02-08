@@ -50,7 +50,25 @@ export const getMetaData = async () => {
 };
 
 export const getNav = async () => {
-  return db.query.nav.findMany();
+  const nav = await db.query.nav.findMany();
+  if (nav.filter(n => n.isParent).length) {
+    const getChilds = nav.map(async (n) => {
+      if (n.isParent) {
+        const page = await getPageByName(n.name);
+        if (page) {
+          const children = await db.select({
+            name: schema.pages.name,
+            display_name: schema.pages.display_name,
+          }).from(schema.pages).where(eq(schema.pages.nest_id, page.id));
+          return { ...n, children };
+        }
+      }
+      return n;
+    });
+    const navWithChildren = await Promise.all(getChilds)
+    return navWithChildren;
+  }
+  return nav;
 };
 
 export const getPages = async () => {
@@ -63,6 +81,7 @@ export const getPageByName = async (name: string): Promise<schema.Pages | undefi
   });
   return page;
 };
+
 export interface PageDetails {
   page: schema.Pages | null;
   content: schema.Content[] | null;

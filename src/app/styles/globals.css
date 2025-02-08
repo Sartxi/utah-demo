@@ -187,7 +187,7 @@ ul.no-style {
   background-color: var(--complementary);
 }
 
-input {
+input[type="text"] {
   display: block;
   padding: 10px;
   width: 100%;

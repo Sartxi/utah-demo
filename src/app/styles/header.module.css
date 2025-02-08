@@ -42,6 +42,31 @@
   font-size: 1em;
 }
 
+.menuitem {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  left: -10px;
+  background-color: white;
+  width: 230px;
+  padding: 20px 10px 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.openRight {
+  left: auto;
+  right: -10px;
+}
+
+.menucta {
+  z-index: 99;
+}
+
 @media (max-width: 600px) {
   .content {
     height: 60px;

@@ -22,14 +22,16 @@ function getPageHref({ type, name }: Pages) {
 function NavForm({ nav, place, pages, close }: NavFormProps) {
   const router = useRouter();
   const [ctaname, setCtaName] = useState<string | undefined>(nav?.name);
+  const [isParent, setIsParent] = useState<boolean | undefined>(nav?.isParent);
   const [page, setPage] = useState<string | undefined>(pages?.find(p => getPageHref(p) === nav?.href)?.name);
   if (!nav) return '';
 
   const onSubmit = async () => {
     if (page && pages) {
       const { name, type } = pages.find(p => p.name === page) ?? { name: "", type: "" };
-      const data = { ...nav, name, place, href: getPageHref({ name, type } as Pages) };
+      const data = { ...nav, name, place, isParent: !!isParent, href: getPageHref({ name, type } as Pages) };
       if (nav.cta && ctaname) data.name = ctaname;
+      
       const updated = await editNav(data);
       if (updated) {
         router.refresh();
@@ -57,6 +59,15 @@ function NavForm({ nav, place, pages, close }: NavFormProps) {
       ) : ''}
       <Select value={page ?? nav.name} values={pages?.map(page => page.name) ?? []} changed={(value) => setPage(value)} />
       <div className="multi-btn">
+        <input
+          type="checkbox"
+          name="isParent"
+          onChange={(e) => setIsParent(e.target.checked)}
+          checked={isParent}
+        />
+        Show sub pages
+      </div>
+      <div className="multi-btn">
         <button className="cta" type="button" onClick={() => onSubmit()}>Save</button>
         <button className="cta grey" type="button" onClick={() => close()}>Cancel</button>
         {nav.id !== 0 && <button className="cta red right" type="button" onClick={() => onRemove()}>Remove</button>}
@@ -66,7 +77,7 @@ function NavForm({ nav, place, pages, close }: NavFormProps) {
 }
 
 const newNavItem = (place: number, cta: boolean = false): Nav => {
-  return { id: 0, name: '', place, href: '', cta };
+  return { id: 0, name: '', place, href: '', cta, isParent: false };
 };
 
 export default function NavEdit({ nav, open, pages }: SaEditProps) {

@@ -23,6 +23,7 @@ const nav = [
     name: "Contact",
     place: 1,
     href: "/contact",
+    isParent: false,
   },
 ];
 

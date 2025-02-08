@@ -20,6 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const nav = await getNav();
+  
   return (
     <html lang="en">
       <body className={`${font.variable}`}>

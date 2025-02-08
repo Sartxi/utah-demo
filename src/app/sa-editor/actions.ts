@@ -91,7 +91,7 @@ export async function updataMeta(formData: FormData) {
 export async function editNav(data: schema.Nav) {
   if (data.id === 0) {
     const newNav = {};
-    ["name", "href", "place", "cta"].forEach(d => newNav[d] = data[d]);
+    ["name", "href", "place", "isParent", "cta"].forEach(d => newNav[d] = data[d]);
     const created = await createNav(newNav as schema.Nav);
     return created;
   } else {

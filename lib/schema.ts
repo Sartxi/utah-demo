@@ -53,6 +53,7 @@ export const nav = pgTable(
     place: integer().notNull(),
     href: text("href").notNull(),
     cta: boolean().notNull(),
+    isParent: boolean().notNull(),
   },
   (nav) => [uniqueIndex("unique_idx").on(nav.name)]
 );
@@ -63,6 +64,8 @@ export interface Nav {
   place: number;
   href: string;
   cta: boolean;
+  isParent: boolean;
+  children?: { name: string; display_name: string }[];
 }
 
 export const meta = pgTable(
@@ -90,7 +93,7 @@ export const pages = pgTable(
     name: text("name").notNull(),
     type: text("type").notNull(),
     nest_id: integer("nest_id"),
-    display_name: text("display_name")
+    display_name: text("display_name"),
   },
   (page) => [uniqueIndex("unique_idx").on(page.id)]
 );
