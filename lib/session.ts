@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 const secretKey = process.env.SESSION_SECRET;
+const sessionKey = "sa_editor_session";
 const key = new TextEncoder().encode(secretKey);
 
 export async function encrypt(payload) {
@@ -25,28 +26,28 @@ export async function decrypt(input: string): Promise<any> {
 export async function loginSession(user) {
   const session = await encrypt({ user });
   const cookie = await cookies();
-  cookie?.set("session", session, { httpOnly: true });
+  cookie?.set(sessionKey, session, { httpOnly: true });
 }
 
 export async function logout() {
   const cookie = await cookies();
-  cookie?.set("session", "", { expires: new Date(0) });
+  cookie?.set(sessionKey, "", { expires: new Date(0) });
 }
 
 export async function getSession() {
   const cookie = await cookies();
-  const session = cookie.get("session")?.value;
+  const session = cookie.get(sessionKey)?.value;
   if (!session) return null;
   return await decrypt(session);
 }
 
 export async function updateSession(request: NextRequest) {
-  const session = request.cookies.get("session")?.value;
+  const session = request.cookies.get(sessionKey)?.value;
   if (!session) return;
   const parsed = await decrypt(session);
   const res = NextResponse.next();
   res.cookies.set({
-    name: "session",
+    name: sessionKey,
     value: await encrypt(parsed),
     httpOnly: true,
   });

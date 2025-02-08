@@ -32,11 +32,11 @@ export default function ContactUs() {
       <div className={styles.form}>
         <Form action={sendContact}>
           <label>Full Name</label>
-          <input name="name" />
+          <input name="name" type="text" />
           <label>Email</label>
-          <input name="email" />
+          <input name="email" type="text" />
           <label>Phone</label>
-          <input name="phone" />
+          <input name="phone" type="text" />
           <button type="submit" className="cta">Send</button>
         </Form>
       </div>
