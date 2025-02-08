@@ -1,46 +1,28 @@
 import styles from "../styles/services.module.css";
-import Image from "next/image";
-import TextOver from "../ui/text-over";
 import Link from "next/link";
-import { PageData, usePage, usePages } from "../data";
-import { PageType } from "../pages";
+import Pod from "./pod";
+import { Content } from "../../../lib/schema";
 
 interface ServicesProps {
-  id: string;
-  type: PageType;
+  services: Content[];
+  itemWidth: number;
+  imgHeight: number;
 }
 
-export default function Services({ id, type }: ServicesProps) {
-  const page: PageData | undefined = usePage(id);
-  const pages: PageData[] = usePages(type);
-
-  if (!page) return <span />;
-  const { title, description, image } = page;
-
+export default function Services({ services, itemWidth, imgHeight }: ServicesProps) {
   return (
-    <>
-      <div className={styles.hero}>
-        <Image src={`/${image}`} className={styles.image} alt={title} fill={true} />
-        <TextOver size="small" direction="left">
-          <div><h1 className="large">{title}</h1></div>
-        </TextOver>
-      </div>
-      <div className={`${styles.services} content`}>
-        <p className="semi-bold space">{description}</p>
-        <h3>Services:</h3>
-        <ul className="no-style">
-          {pages.map((s: PageData) => (
-            <li key={s.id}>
-              <Link href={`/${type}/${s.id}`} className={`${styles.service} pod shadow`}>
-                <Image src={`/${s.image}`} width={200} height={130} alt={s.title} />
-                <div className={styles.text}>
-                  <h4>{s.title}</h4>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+    <div className={styles.serviceList}>
+      {services.map((service) => {
+        const { href } = service;
+        if (href) {
+          return (
+            <Link key={service.id} href={href}>
+              <Pod content={service} width={itemWidth} imgHeight={imgHeight} />
+            </Link>
+          )
+        }
+        return <Pod key={service.id} content={service} width={itemWidth} imgHeight={imgHeight} />;
+      })}
+    </div>
   )
 }

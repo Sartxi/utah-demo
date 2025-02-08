@@ -3,10 +3,10 @@ import styles from "./styles/home.module.css";
 import TextOver from "./ui/text-over";
 import Link from "next/link";
 import { wrapFirstWord } from "./util";
-import { getPage } from "../../lib/db";
+import { getPageDetailsByName } from "../../lib/db";
 
 export default async function Home() {
-  const { content, metadata } = await getPage('home');
+  const { page, content } = await getPageDetailsByName('home');
   if (!content) return <span />;
   const hero = content.find((c) => c.type === 'hero');
   const services = content.find((c) => c.type === 'service pod');
@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <div className={styles.home}>
       <div className={styles.hero}>
-        <Image src={hero.image ?? ''} className={styles.image} alt={metadata?.title ?? ''} fill={true} priority />
+        <Image src={hero.image ?? ''} className={styles.image} alt={page?.name ?? ''} fill={true} priority />
         <TextOver direction="left" size="large">
           <div>
             <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord(hero.title ?? "", 'strong') }}></h1>

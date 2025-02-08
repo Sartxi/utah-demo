@@ -57,25 +57,32 @@ export const getPages = async () => {
   return db.query.pages.findMany();
 };
 
+export const getPageByName = async (name: string): Promise<schema.Pages | undefined> => {
+  const page = await db.query.pages.findFirst({
+    where: eq(schema.pages.name, name),
+  });
+  return page;
+};
 export interface PageDetails {
   page: schema.Pages | null;
   content: schema.Content[] | null;
   metadata: schema.Meta | null;
 }
 
-export const getPage = async (name: string): Promise<PageDetails> => {
-  const page = await db.query.pages.findFirst({
-    where: eq(schema.pages.name, name),
-  });
+export const getPageDetailsByName = async (name: string, getMeta: boolean = false): Promise<PageDetails> => {
+  const page = await getPageByName(name);
   if (page) {
     const content = await db.query.content.findMany({
       where: eq(schema.content.page, page.id),
     });
-    const meta = await db.query.meta.findMany();
-    const metadata =
-      meta.find((data) => data.page === page.id) ??
-      meta.find((i) => i.page === null) ??
-      null;
+    let metadata;
+    if (getMeta) {
+      const meta = await db.query.meta.findMany();
+      metadata =
+        meta.find((data) => data.page === page.id) ??
+        meta.find((i) => i.page === null) ??
+        null;
+    }
     return { page, content, metadata };
   }
   return { page: null, content: null, metadata: null };

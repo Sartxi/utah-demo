@@ -1,6 +1,6 @@
 import styles from "@/app/styles/editor.module.css";
 import { getSession } from "../../../lib/session";
-import { getNav, getPage, getPageData, getPages, getPageUrl, PageDetails } from "../../../lib/db";
+import { getNav, getPageDetailsByName, getPageData, getPages, getPageUrl, PageDetails } from "../../../lib/db";
 import { Pages } from "../../../lib/schema";
 import SaEditor from "./editor";
 
@@ -15,7 +15,7 @@ export default async function SaWidget() {
   const nav = await getNav();
   const pages = await getPages();  
   const path = await getCurrentPage(pages);
-  const page: PageDetails | null = await getPage(path);
+  const page: PageDetails | null = await getPageDetailsByName(path, true);
 
   return (
     <div className={styles.widget}>

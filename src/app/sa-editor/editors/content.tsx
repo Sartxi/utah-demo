@@ -86,7 +86,7 @@ function ContentEditor(props: ContentEditProps) {
     <>
       <span
         className={`content-label ${type.replaceAll(' ', '-')}-label`}
-        onClick={() => toggle(open ? undefined : type)}>{isService ? title : type}</span>
+        onClick={() => toggle(open ? undefined : `${type}-${id}`)}>{isService ? title : type}</span>
       {open ? (
         <div className={styles.contenteditarea}>
           <Form className={styles.editform} action={onSubmit}>
@@ -192,7 +192,7 @@ export default function ContentEdit({ open, page }: SaEditProps) {
     <div className={`${styles.page} pod`}>
       <h3>Page Content</h3>
       <div className={styles.contentlist}>
-        {page?.content?.sort((a, b) => a.order - b.order).map(c => <ContentEditor key={c.id} content={c} open={edit === c.type} toggle={setEdit} />)}
+        {page?.content?.sort((a, b) => a.order - b.order).map(c => <ContentEditor key={c.id} content={c} open={edit === `${c.type}-${c.id}`} toggle={setEdit} />)}
         <AddContent page={page} closeEdit={() => setEdit(undefined)} />
       </div>
     </div>
