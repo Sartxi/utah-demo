@@ -51,6 +51,7 @@
   justify-content: flex-start;
   flex-wrap: nowrap;
   gap: 10px;
+  position: relative;
 }
 
 .form form {
@@ -69,4 +70,28 @@
 
 .form button {
   margin-top: 10px;
+}
+
+.sentmessage {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+.sentmessage span,
+.sentmessage strong {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+.sentmessage span {
+  background-color: red;
 }

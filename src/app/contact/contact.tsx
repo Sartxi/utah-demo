@@ -1,45 +1,46 @@
-import Form from "next/form";
 import styles from "../styles/contact.module.css";
-import { sendContact } from "./actions";
 import Image from "next/image";
+import { getContact, PageDetails } from "../../../lib/db";
+import ContactForm from "./contactForm";
 
-export default function ContactUs() {
+export default async function ContactUs({ details }: { details: PageDetails }) {
+  const { title, description } = details?.content?.find(c => c.type === 'hero') ?? {};
+  const user = await getContact();
+  if (!user) return <span />
+  const { phone, address, city, state, zip, email } = user;
+  const fPhone = phone?.toString().match(/^(\d{3})(\d{3})(\d{4})$/);
+  
   return (
     <div className={`${styles.contact} content`}>
       <div className={styles.contacts}>
-        <h2>Get a Free Estimate</h2>
-        <p className="semi-bold space">Whether you are an individual or contractor, call us, email us, or use this form to request an estimate or to discuss your project.</p>
+        <p className="semi-bold space">{description}</p>
+        <h2>{title}</h2>
         <div className={styles.points}>
+          <br />
+          <p className="semi-bold space">Contact Info:</p>
           <div className={styles.point}>
             <Image src="/location.svg" width={20} height={20} alt="Location" />
             <div className={styles.text}>
-              276 North 680 East<br />Vineyard, UT 84059
+              {address}<br />{city}, {state} {zip}
             </div>
           </div>
           <div className={styles.point}>
             <Image src="/phone.svg" width={20} height={20} alt="Location" />
-            <div className={styles.text}>385-335-1499</div>
+            <div className={styles.text}>
+              {fPhone ? (
+                <a href={`tel:${phone}`}>{`${fPhone[1]}-${fPhone[2]}-${fPhone[3]}`}</a>
+              ) : ''}
+            </div>
           </div>
           <div className={styles.point}>
             <Image src="/email.svg" width={20} height={20} alt="Location" />
-            <div className={styles.text}>motiondemolition385@gmail.com </div>
+            <div className={styles.text}>
+              <a href={`mailto:${email}`}>{email}</a>
+            </div>
           </div>
         </div>
-        <div className={styles.socials}>
-          Follow us!
-        </div>
       </div>
-      <div className={styles.form}>
-        <Form action={sendContact}>
-          <label>Full Name</label>
-          <input name="name" type="text" />
-          <label>Email</label>
-          <input name="email" type="text" />
-          <label>Phone</label>
-          <input name="phone" type="text" />
-          <button type="submit" className="cta">Send</button>
-        </Form>
-      </div>
+      <ContactForm />
     </div>
   )
 }

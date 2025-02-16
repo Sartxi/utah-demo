@@ -30,6 +30,14 @@ export const getUsers = async () => {
   return db.query.users.findMany();
 };
 
+export const getContact = async () => {
+  const user = await db.query.users.findFirst({
+    where: eq(schema.users.contact, true),
+  });
+  if (user) return user
+  else return false
+}
+
 export const getMeta = async () => {
   return db.query.meta.findMany();
 };
