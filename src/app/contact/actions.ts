@@ -25,6 +25,8 @@ function getFormData(attrs: string[], form: FormData): FormDatas {
   return data as FormDatas;
 }
 
+const recaptch = `https://recaptchaenterprise.googleapis.com/v1/projects/${process.env.CAPTCHA_SITE_KEY}/assessments?key=${process.env.CAPTCHA_API_KEY}`;
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   host: process.env.EMAIL_HOST,
@@ -35,7 +37,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function sendContact(formData: FormData) {
+export async function sendContact(formData: FormData, token: string) {
   const users = await getUsers();
   const admin = users.find((c) => !c.contact);
 
@@ -50,9 +52,26 @@ export async function sendContact(formData: FormData) {
   const notify = mail.template(
     mail.notify({ name, service, phone, email, message, reachtime })
   );
-
-  if (!contact || !email) return;
+  if (!contact || !email || !token) return;
   try {
+    const sendCaptcha = await fetch(recaptch, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        event: {
+          token: token,
+          expectedAction: "CONTACT_FORM",
+          siteKey: process.env.CAPTCHA_SECRET_KEY,
+        },
+      }),
+    });
+
+    const captcha = await sendCaptcha.json();
+    if (captcha.riskAnalysis.score < 0.5)
+      return { success: false, reason: "Failed security check" };
+
     await transporter.sendMail({
       from: `"${admin?.name}"<${admin?.email}>`,
       to: email,
@@ -65,9 +84,10 @@ export async function sendContact(formData: FormData) {
       subject: "Cha Ching! Someone sent a contact request",
       html: notify,
     });
+
     return { success: true };
   } catch (err) {
     console.error(err);
-    return { success: false };
+    return { success: false, reason: 'There was a problem, please try again later' };
   }
 }
