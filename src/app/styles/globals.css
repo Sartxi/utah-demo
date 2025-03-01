@@ -155,6 +155,11 @@ ul.no-style {
   filter: invert(40%) sepia(34%) saturate(5822%) hue-rotate(10deg) brightness(92%) contrast(77%);
 }
 
+.center {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .right {
   margin-left: auto;
 }

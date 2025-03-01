@@ -12,6 +12,10 @@
   position: relative;
 }
 
+.img img {
+  object-fit: cover;
+}
+
 .text {
   border-top: 8px solid var(--secondary);
   padding: 20px;

@@ -40,12 +40,12 @@ export default function Footer({ nav }: FooterProps) {
             <a href="mailto:motiondemolition385@gmail.com">
               <Image src="/email.svg" width={30} height={33} alt="Email Utah Demo" />
             </a>
-            <a href="mailto:motiondemolition385@gmail.com">
+            {/* <a href="mailto:motiondemolition385@gmail.com">
               <Image src="/linkedin.svg" width={28} height={28} alt="Email Utah Demo" />
             </a>
             <a href="mailto:motiondemolition385@gmail.com">
               <Image src="/instagram.svg" width={30} height={30} alt="Email Utah Demo" />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

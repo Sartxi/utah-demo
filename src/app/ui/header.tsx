@@ -20,8 +20,8 @@ function NavList({ nav }: { nav: Nav[] }) {
             {hovered === item.name && item.isParent && item.children?.length ? (
               <div className={`${styles.dropdown} ${i === (menu.length - 1) ? styles.openRight : ''}`}>
                   {item.children.map((c) => {
-                    const href = `/services/${item.name}/${c.name.replaceAll(' ', '-')}`;
-                    return <Link key={c.name} href={href}>{c.display_name ?? c.name}</Link>;
+                    const href = `/${item.name}/${c.name.replaceAll(' ', '-')}`;
+                    return <Link key={c.name} href={href}>{c.name}</Link>;
                   })}
               </div>
             ) : ''}

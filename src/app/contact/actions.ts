@@ -39,7 +39,7 @@ const transporter = nodemailer.createTransport({
 
 export async function sendContact(formData: FormData, token: string) {
   const users = await getUsers();
-  const admin = users.find((c) => !c.contact);
+  const admin = users.find((c) => c.contact);
 
   const { name, email, phone, service, reachtime } = getFormData(
     ["name", "email", "phone", "service", "reachtime"],

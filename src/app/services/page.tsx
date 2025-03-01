@@ -6,6 +6,7 @@ import DustFree from "@/app/ui/dust-free";
 import Services from "@/app/ui/services";
 import Image from "next/image";
 import TextOver from "@/app/ui/text-over";
+import Link from "next/link";
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getMetaData();
@@ -18,9 +19,9 @@ export default async function Page() {
   if (!pageDetails || !pageDetails.content?.length || !pageDetails.page) return <span />;
 
   const { page, content } = pageDetails;
-  const { title, image, description } = content.find(c => c.type === 'hero') ?? {};
+  const { title, image, description, cta, href } = content.find(c => c.type === 'hero') ?? {};
   const breadcrumbs: Crumb[] = [{ text: page.display_name ?? page.name }];
-  
+
   return (
     <div className={styles.page}>
       <BreadCrumb crumbs={breadcrumbs} />
@@ -34,7 +35,11 @@ export default async function Page() {
         {title && <h2>{title}</h2>}
         {description && <p>{description}</p>}
         <br />
-        <Services itemWidth={200} imgHeight={130} services={content.filter(c => c.type === 'service')} />
+        <Services itemWidth={100} imgHeight={230} services={content.filter(c => c.type === 'service')} />
+        <br />
+        <div className="center">
+          {cta ? <Link href={href ?? "/"} className="cta large">{cta}</Link> : ''}
+        </div>
       </div>
       <DustFree />
     </div>
