@@ -91,7 +91,7 @@
 
 @media (max-width: 600px) {
   .contact {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 
   .form {
