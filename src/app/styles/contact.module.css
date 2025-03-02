@@ -1,11 +1,5 @@
 .contact {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  gap: 20px;
+  flex-direction: row !important;
 }
 
 .contacts {

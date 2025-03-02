@@ -96,6 +96,10 @@
     gap: 16px;
   }
 
+  .services {
+    top: 0;
+  }
+
   .technician {
     position: absolute;
     left: 0;
@@ -103,7 +107,7 @@
   }
 
   .solutions {
-    height: auto;
+    height: 500px;
     padding: 50px 0 0;
   }
 }

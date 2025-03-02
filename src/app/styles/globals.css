@@ -213,9 +213,14 @@ textarea {
 }
 
 @media (max-width: 600px) {
+
   h1,
   h2 {
     font-size: 1.5em;
+  }
+
+  h1.large {
+    font-size: 2em;
   }
 
   .main-page {
@@ -226,7 +231,7 @@ textarea {
     display: block;
     text-align: center;
   }
-  
+
   .services.content {
     padding: 30px;
   }
