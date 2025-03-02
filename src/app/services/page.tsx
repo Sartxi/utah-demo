@@ -35,7 +35,7 @@ export default async function Page() {
         {title && <h2>{title}</h2>}
         {description && <p>{description}</p>}
         <br />
-        <Services itemWidth={100} imgHeight={230} services={content.filter(c => c.type === 'service')} />
+        <Services itemWidth={32} imgHeight={230} services={content.filter(c => c.type === 'service')} />
         <br />
         <div className="center">
           {cta ? <Link href={href ?? "/"} className="cta large">{cta}</Link> : ''}
