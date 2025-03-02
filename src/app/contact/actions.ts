@@ -69,6 +69,7 @@ export async function sendContact(formData: FormData, token: string) {
     });
 
     const captcha = await sendCaptcha.json();
+
     if (captcha.riskAnalysis.score < 0.7)
       return { success: false, reason: "Failed security check" };
 
