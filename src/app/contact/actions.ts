@@ -69,8 +69,9 @@ export async function sendContact(formData: FormData, token: string) {
     });
 
     const captcha = await sendCaptcha.json();
-    if (captcha.riskAnalysis.score < 0.5)
-      return { success: false, reason: "Failed security check " };
+
+    if (captcha.riskAnalysis.score < 0.7)
+      return { success: false, reason: "Failed security check" };
 
     await transporter.sendMail({
       from: `"${admin?.name}"<${admin?.email}>`,

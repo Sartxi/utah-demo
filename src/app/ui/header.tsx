@@ -45,8 +45,8 @@ function Menu({ nav }: { nav: Nav[] }) {
       </div>
       {drawer ? (
         <div className={`${styles.drawer} shadow`}>
-          {menu.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
-          {cta && <Link href={cta.href ?? "/contact"} className="cta">{cta.name}</Link>}
+          {menu.map((item) => <Link key={item.name} href={item.href} onClick={() => setDrawer(false)}>{item.name}</Link>)}
+          {cta && <Link href={cta.href ?? "/contact"} className="cta" onClick={() => setDrawer(false)}>{cta.name}</Link>}
         </div>
       ) : ''}
     </div>

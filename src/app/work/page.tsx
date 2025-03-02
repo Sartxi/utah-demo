@@ -34,7 +34,8 @@ export default async function Page() {
       <div className="services content">
         {title && <h2>{title}</h2>}
         {description && <p>{description}</p>}
-        <Services itemWidth={200} imgHeight={130} services={content.filter(c => c.type === 'service')} />
+        <br />
+        <Services itemWidth={49} imgHeight={500} services={content.filter(c => c.type === 'service')} />
       </div>
       <DustFree />
     </div>

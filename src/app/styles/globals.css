@@ -113,6 +113,9 @@ a:hover {
   justify-content: flex-start;
   flex-wrap: nowrap;
   gap: 20px;
+}
+
+.services.content {
   padding: 50px;
 }
 
@@ -210,7 +213,6 @@ textarea {
 }
 
 @media (max-width: 600px) {
-
   h1,
   h2 {
     font-size: 1.5em;
@@ -223,5 +225,9 @@ textarea {
   a.cta {
     display: block;
     text-align: center;
+  }
+  
+  .services.content {
+    padding: 30px;
   }
 }

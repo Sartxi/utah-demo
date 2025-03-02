@@ -11,7 +11,7 @@ export default async function ContactUs({ details }: { details: PageDetails }) {
   const fPhone = phone?.toString().match(/^(\d{3})(\d{3})(\d{4})$/);
 
   return (
-    <div className={`${styles.contact}`}>
+    <div className={`${styles.contact} services content`}>
       <div className={styles.contacts}>
         <h2>{title}</h2>
         <p className="semi-bold space">{description}</p>

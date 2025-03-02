@@ -9,7 +9,6 @@
 }
 
 .hero {
-  height: 20vh;
   width: 100% !important;
   position: relative;
   overflow: hidden;
@@ -32,3 +31,14 @@
   color: var(--primary);
   text-shadow: 2px 1px 3px var(--shade5);
 }
+
+@media (max-width: 600px) {
+  .hero {
+    flex-direction: column !important;
+  }
+
+  .form {
+    width: 100%;
+  }
+}
+
