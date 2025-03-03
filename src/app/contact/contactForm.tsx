@@ -12,12 +12,21 @@ export default function ContactForm() {
   const [reachtime, setReachtime] = useState("Morning");
   const [sent, setSent] = useState<boolean | string>(false);
   const [error, setError] = useState<string | null>(null);
+  const [sending, setSending] = useState<FormData | null>(null);
 
   useEffect(() => {
-    if (sent) setTimeout(() => setSent(false), 2500);
-  }, [sent])
+    if (sending) onSubmit(sending)
+    if (sent) {
+      setSending(null);
+      setTimeout(() => setSent(false), 2500);
+    }
+  }, [sent, sending]);
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: FormData | null) => {
+    if (!data) {
+      setSent("error");
+      return;
+    }
     const token = await recaptcha?.current?.executeAsync();
     const send = await sendContact(data, token);
     setSent(send?.success ? "success" : "error");
@@ -27,7 +36,7 @@ export default function ContactForm() {
   return (
     <div className={styles.form}>
       {typeof sent === 'string' && <div className={styles.sentmessage}>{sent === "error" ? <span>{error}</span> : <strong>Your message sent!</strong>}</div>}
-      <Form action={onSubmit}>
+      <Form action={(data: FormData) => setSending(data)}>
         <label>Full Name</label>
         <input name="name" type="text" />
         <label>Email</label>
@@ -46,7 +55,9 @@ export default function ContactForm() {
           size="invisible"
           sitekey="6LfQBtoqAAAAAChkVcvzbNdPRMZz6pp1Vgg-t4k3"
         />
-        <button type="submit" className="cta">Send</button>
+        <button type="submit" className={`cta ${styles.submit}`} disabled={!!sending}>
+          {sending ? <div className={styles.loader}></div> : "Send"}
+        </button>
       </Form>
     </div>
   )

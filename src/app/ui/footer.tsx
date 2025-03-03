@@ -10,7 +10,7 @@ interface FooterProps {
 function NavList({ nav }: FooterProps) {
   return (
     <>
-      {nav.filter((i) => !i.cta).map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
+      {nav.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
     </>
   )
 }
@@ -19,10 +19,6 @@ export default function Footer({ nav }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <div className={`${styles.content} content`}>
-        <div className={styles.nav}>
-          <h3>Navigation</h3>
-          <NavList nav={nav} />
-        </div>
         <div className={styles.company}>
           <div className={styles.contact}>
             <h3>Contact Us</h3>
@@ -30,6 +26,10 @@ export default function Footer({ nav }: FooterProps) {
             <a href="tel:+3853351499">385-335-1499</a>
             <a href="mailto:motiondemolition385@gmail.com">motiondemolition385@gmail.com</a>
           </div>
+        </div>
+        <div className={styles.nav}>
+          <h3>About Us</h3>
+          <NavList nav={nav} />
         </div>
         <div>
           <Image src="/logo.png" className={styles.footlogo} width={280} height={70} alt="Utah Demo" />

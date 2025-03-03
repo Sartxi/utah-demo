@@ -77,6 +77,10 @@ const getEmailTemplate = (body: string) => {
             margin-right: 15px;
             font-size: 0.9em;
           }
+
+          .capitalize {
+            text-transform: capitalize;
+          }
         </style>
       </head>
 

@@ -1,5 +1,6 @@
 .contact {
   flex-direction: row !important;
+  gap: 60px !important;
 }
 
 .contacts {
@@ -87,6 +88,35 @@
 
 .sentmessage span {
   background-color: red;
+}
+
+.submit {
+  display: flex;
+}
+
+.submit {
+  font-size: 19px !important;
+}
+
+.loader {
+  width: fit-content;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0000;
+  -webkit-text-stroke: 1px #FFF;
+  background: conic-gradient(#FFF 0 0) 0/0% 100% no-repeat text;
+  animation: l1 1s linear infinite;
+}
+
+.loader:before {
+  content: "Sending";
+}
+
+@keyframes l1 {
+  to {
+    background-size: 120% 100%
+  }
 }
 
 @media (max-width: 600px) {

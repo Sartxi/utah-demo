@@ -19,7 +19,7 @@ const contact = ({ name, service, contact }) => {
         possibility of working with you and helping you achieve your goals.
       </p>
       <p>Warm regards,</p>
-      <h3>${contact}</h3>
+      <h3 class="capitalize">${contact}</h3>
       <i>your demolition specialist</i>
     </div>
   `;

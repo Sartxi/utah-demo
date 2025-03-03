@@ -102,7 +102,6 @@ a:hover {
 .content {
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 0 15px;
 }
 
 .services {
