@@ -15,10 +15,7 @@ export default function ContactForm() {
   const [sending, setSending] = useState<FormData | null>(null);
 
   useEffect(() => {
-    if (sending) {
-      onSubmit(sending);
-      setSending(null);
-    }
+    if (sending) onSubmit(sending);
     if (sent) {
       setTimeout(() => setSent(false), 2500);
     }
@@ -32,6 +29,7 @@ export default function ContactForm() {
     const token = await recaptcha?.current?.executeAsync();
     const send = await sendContact(data, token);
     setSent(send?.success ? "success" : "error");
+    setSending(null);
     if (!send?.success) setError(send?.reason ?? "");
   };
 
