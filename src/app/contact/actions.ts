@@ -74,7 +74,7 @@ export async function sendContact(formData: FormData, token: string) {
       return { success: false, reason: "Failed security check" };
 
     await transporter.sendMail({
-      from: `"${admin?.name}"<${admin?.email}>`,
+      from: `"${admin?.name}, your demolition specialist"<${admin?.email}>`,
       to: email,
       subject: `${name}, we got your request for ${service}!`,
       html: contact,

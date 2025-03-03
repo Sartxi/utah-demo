@@ -15,9 +15,11 @@ export default function ContactForm() {
   const [sending, setSending] = useState<FormData | null>(null);
 
   useEffect(() => {
-    if (sending) onSubmit(sending)
-    if (sent) {
+    if (sending) {
+      onSubmit(sending);
       setSending(null);
+    }
+    if (sent) {
       setTimeout(() => setSent(false), 2500);
     }
   }, [sent, sending]);
