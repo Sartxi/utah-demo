@@ -24,7 +24,7 @@ export default function Footer({ nav }: FooterProps) {
             <h3>Contact Us</h3>
             <p className="space">276 North 680 East <br /> Vineyard, UT 84059</p>
             <a href="tel:+3853351499">385-335-1499</a>
-            <a href="mailto:motiondemolition385@gmail.com">motiondemolition385@gmail.com</a>
+            <a href="mailto:utahdustfreedemolition@gmail.com">utahdustfreedemolition@gmail.com</a>
           </div>
         </div>
         <div className={styles.nav}>
@@ -37,7 +37,7 @@ export default function Footer({ nav }: FooterProps) {
             <a href="tel:+3853351499">
               <Image src="/phone.svg" width={30} height={30} alt="Call Utah Demo" />
             </a>
-            <a href="mailto:motiondemolition385@gmail.com">
+            <a href="mailto:utahdustfreedemolition@gmail.com">
               <Image src="/email.svg" width={30} height={33} alt="Email Utah Demo" />
             </a>
             {/* <a href="mailto:motiondemolition385@gmail.com">
