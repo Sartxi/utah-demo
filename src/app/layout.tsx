@@ -5,6 +5,7 @@ import Header from "./ui/header";
 import Footer from "./ui/footer";
 import SaWidget from "./sa-editor/widget";
 import { getMetaData, getNav } from "../../lib/db";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const font = Montserrat({
   variable: "--font",
@@ -29,6 +30,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           {children}
         </div>
         <Footer nav={nav} />
+        <GoogleAnalytics gaId="AW-16908384084" />
         <SaWidget />
       </body>
     </html>
