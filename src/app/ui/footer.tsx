@@ -1,38 +1,11 @@
 import styles from "../styles/footer.module.css";
 import Image from "next/image";
-import Link from "next/link";
-import { Nav } from "../../../lib/schema";
 
-interface FooterProps {
-  nav: Nav[];
-}
-
-function NavList({ nav }: FooterProps) {
-  return (
-    <>
-      {nav.map((item) => <Link key={item.name} href={item.href}>{item.name}</Link>)}
-    </>
-  )
-}
-
-export default function Footer({ nav }: FooterProps) {
+export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`${styles.content} content`}>
-        <div className={styles.company}>
-          <div className={styles.contact}>
-            <h3>Contact Us</h3>
-            <p className="space">276 North 680 East <br /> Vineyard, UT 84059</p>
-            <a href="tel:+3853351499">385-335-1499</a>
-            <a href="mailto:utahdustfreedemolition@gmail.com">utahdustfreedemolition@gmail.com</a>
-          </div>
-        </div>
-        <div className={styles.nav}>
-          <h3>About Us</h3>
-          <NavList nav={nav} />
-        </div>
         <div>
-          <Image src="/logo.png" className={styles.footlogo} width={280} height={70} alt="Utah Demo" />
           <div className={styles.methods}>
             <a href="tel:+3853351499">
               <Image src="/phone.svg" width={30} height={30} alt="Call Utah Demo" />

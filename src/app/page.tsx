@@ -1,9 +1,11 @@
 import Image from "next/image";
 import styles from "./styles/home.module.css";
-import TextOver from "./ui/text-over";
-import Link from "next/link";
+// import TextOver from "./ui/text-over";
+// import Link from "next/link";
 import { wrapFirstWord } from "./util";
 import { getPageDetailsByName } from "../../lib/db";
+import ContactForm from "./contact/contactForm";
+import TextOver from "./ui/text-over";
 
 export default async function Home() {
   const { page, content } = await getPageDetailsByName('home');
@@ -15,55 +17,66 @@ export default async function Home() {
 
   return (
     <div className={styles.home}>
+      <Image src={hero.image ?? ''} className={styles.heroImg} alt={page?.name ?? ''} fill priority />
       <div className={styles.hero}>
-        <Image src={hero.image ?? ''} className={styles.image} alt={page?.name ?? ''} fill={true} priority />
-        <TextOver direction="left" size="large">
-          <div>
-            <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord(hero.title ?? "", 'strong') }}></h1>
-            <p className="semi-bold space">{hero.description}</p>
-            <div>
-              <Link href={hero.href ?? "/"} className="cta large">{hero.cta}</Link>
+        <div className={styles.herocontent}>
+          <Image
+            src="/full_logo.jpg"
+            alt="vic's logo"
+            width={420}
+            height={394}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={styles.homelogo}
+          />
+          <div className={styles.btmcontent}>
+            <div className={styles.titleicon}>
+              <Image className={styles.technician} src={services.image ?? ''} width={200} height={220} alt={services.title ?? ""} />
+              <h1 dangerouslySetInnerHTML={{ __html: wrapFirstWord(hero.title ?? "", 'strong') }}></h1>
             </div>
+            <h3>{hero.description}</h3>
+            <br />
+            <p className="semi-bold space">{services.description}</p>
           </div>
-        </TextOver>
+        </div>
+        <div className={styles.formcontainer}>
+          <h3 className={styles.cta}>{hero.cta}</h3>
+          <ContactForm formwidth={100} />
+        </div>
       </div>
-      <div className={`content pod shadow ${styles.services}`}>
-        <Image className={styles.technician} src={services.image ?? ''} width={200} height={220} alt={services.title ?? ""} />
-        <div className={styles.text}>
-          <h2 className="has-icon">
-            <Image src="/hammer-icon.svg" alt="hammer" height={30} width={35} /> {services.title}
-          </h2>
-          <p className="space">{services.description}</p>
-          <div className={styles.industries}>
-            {services.list && JSON.parse(services.list).map((service) => {
-              return (
-                <h3 key={service} className="has-icon">
-                  <Image src={`/${service.toLowerCase()}` + '.svg'} alt={service} width={25} height={25} />
-                  {service}
-                </h3>
-              )
-            })}
-          </div>
+      <div className={`content ${styles.services}`}>
+        <div className={styles.industries}>
+          {services.list && JSON.parse(services.list).map((service) => {
+            return (
+              <h3 key={service} className="has-icon">
+                <Image src={`/${service.toLowerCase().replaceAll(' ', '')}` + '.svg'} alt={service} width={40} height={40} />
+                {service}
+              </h3>
+            )
+          })}
         </div>
       </div>
       <div className={styles.solutions}>
-        <Image src={solutions.image ?? ''} className={styles.heroImg} alt={solutions.title ?? ""} fill={true} />
+        <Image src="/oldtruck.jpg" className={styles.oldtruck} width={500} height={243} alt="Vic's old truck" />
+        <Image src="/solutionsbg.png" className={styles.heroImg} alt={solutions.title ?? ""} fill={true} />
         <TextOver direction="right" size="large">
-          <div>
-            <h2>{solutions.title}</h2>
-            <div className={styles.checks}>
-              {solutions.list && JSON.parse(solutions.list).map((solution) => {
-                return (
-                  <h3 key={solution} className="has-icon">
-                    <Image src="/check.svg" alt={solution} width={25} height={25} />
-                    {solution}
-                  </h3>
-                )
-              })}
-            </div>
-            <p className="semi-bold space">{solutions.description}</p>
-            <div>
-              <Link href={solutions.href ?? "/"} className="cta large">{solutions.cta}</Link>
+          <div className={styles.solutioncontent}>
+            <Image src={solutions.image ?? ''} alt={solutions.title ?? ""} width={443} height={290} />
+            <div className={styles.solutioncontenttext}>
+              <h2>{solutions.title}</h2>
+              <p className="semi-bold space">{solutions.description}</p>
+              <div className={styles.checks}>
+                {solutions.list && JSON.parse(solutions.list).map((solution) => {
+                  return (
+                    <h3 key={solution} className="has-icon">
+                      <Image src="/check.svg" alt={solution} width={25} height={25} />
+                      {solution}
+                    </h3>
+                  )
+                })}
+              </div>
+              {/* <div>
+                <Link href={solutions.href ?? "/"} className="cta large">{solutions.cta}</Link>
+              </div> */}
             </div>
           </div>
         </TextOver>

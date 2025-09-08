@@ -53,11 +53,15 @@ function compare(guess: string, pw: string) {
 export async function login(formData: FormData) {
   const name = formData.get("name");
   const guess = formData.get("password");
+  console.log(name);
+  
   if (name && guess) {
     const users = await getUsers();
     const user = users.find((u) => u.name === name);
     if (user) {
       const auth = await compare(guess.toString(), user.password);
+      console.log(auth);
+      
       if (auth) {
         const cookie = user;
         await loginSession(cookie);

@@ -35,8 +35,8 @@
 }
 
 .form {
-  width: 40%;
   background-color: #eee;
+  border: 7px solid #ddd;
   border-radius: 8px;
   padding: 20px;
   display: flex;

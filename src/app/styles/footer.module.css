@@ -1,9 +1,9 @@
 .footer {
-  height: 20vh;
+  height: 90px;
   display: flex;
   align-items: center;
-  border-top: 10px solid var(--primary);
-  background-color: #f7f7f7;
+  border-top: 10px solid #eee;
+  background-color: var(--shade2);
   padding: 0 50px;
 }
 
@@ -12,11 +12,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.footlogo,
-.methods img {
-  filter: invert(20%) sepia(97%) saturate(2415%) hue-rotate(27deg) brightness(97%) contrast(98%);
 }
 
 .company {

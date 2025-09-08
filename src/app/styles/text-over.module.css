@@ -6,98 +6,10 @@
 
 .left,
 .right {
-  color: white;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
-}
-
-.right::before,
-.left::before,
-.right::after {
-  content: '';
-  position: absolute;
-  background: rgba(0, 0, 0, 0.36);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.46) 76%, rgba(0, 0, 0, 0) 100%);
-  transform: rotate(12deg);
-  z-index: 1;
-  height: 115%;
-  width: 62%;
-  top: -34%;
-}
-
-.small::before,
-.small::after {
-  height: 200%;
-  top: -80%;
-}
-
-.cover::before,
-.cover::after {
-  height: 100%;
-  width: 100vw;
-  top: 0;
-  right: 0;
-  left: 0 !important;
-  transform: unset;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0) 100%);
-}
-
-.left div:first-child,
-.right div:first-child {
-  z-index: 1;
-  width: 42%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: var(--content-width);
-  align-self: flex-start;
-}
-
-.left::before {
-  left: -13%;
-}
-
-.right::after {
-  right: -8%;
-  z-index: 0;
-  width: 66%;
-}
-
-.right::before {
-  right: -7%;
-  height: 150%;
-}
-
-.right div:first-child {
-  align-self: end;
-  width: 48%;
-}
-
-@media (max-width: 600px) {
-  .right::before,
-  .left::before,
-  .right::after {
-    transform: none;
-  }
-
-  .left div:first-child,
-  .right div:first-child {
-    align-self: center;
-    width: 100%;
-  }
-
-  .left::before {
-    left: 0;
-    width: 115%;
-  }
-
-  .right::after,
-  .right::before {
-    right: 0;
-    width: 100%;
-  }
 }

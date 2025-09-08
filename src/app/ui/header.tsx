@@ -1,11 +1,12 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMedia } from "../hooks";
 import styles from "../styles/header.module.css";
 import { Nav } from "../../../lib/schema";
 import { getMenu } from "../util";
+import { usePathname } from "next/navigation";
 
 function NavList({ nav }: { nav: Nav[] }) {
   const [hovered, setHovered] = useState<string | null>(null);
@@ -57,15 +58,32 @@ interface HeaderProps {
   nav: Nav[];
 }
 
+function useHomePageScroll() {
+  const page = usePathname();
+  const [scrollY, setScrollY] = useState(0);
+  const isLanding = page === '/';
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    handleScroll(); 
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  if (isLanding && scrollY < 100) return { logo: styles.nologo, isLanding, scrollY };
+  return { logo: styles.logo, isLanding, scrollY };
+}
+
 export default function Header({ nav }: HeaderProps) {
   const { mobile } = useMedia();
+  const { logo, isLanding, scrollY } = useHomePageScroll();
   return (
-    <header className={`${styles.header} shadow`}>
+    <header className={`${styles.header} ${isLanding ? styles.landing : ''} ${scrollY > 100 ? styles.bgwhite : scrollY === 0 ? styles.show : ''}`}>
       <div className={`${styles.content} content`}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={logo}>
           <Image
             src="/logo.png"
-            alt="Utah Dust Free Demolition Logo"
+            alt="vic's logo"
             fill={true}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />

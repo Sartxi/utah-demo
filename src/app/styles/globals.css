@@ -1,15 +1,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #c25f1d;
-  --shade1: #a74402;
-  --shade2: #8d2a00;
-  --shade3: #720f00;
-  --shade4: #570000;
-  --shade5: #3d0000;
-  --secondary: #c2b21d;
-  --tertiary: #2ec21d;
-  --complementary: #1d80c2;
+  --primary: #005eb2;
+  --shade1: #004397;
+  --shade2: #00297d;
+  --shade3: #000e62;
+  --shade4: #000047;
+  --shade5: #00002d;
+  --secondary: #0005b2;
+  --tertiary: #d31e19;
+  --complementary: #b25400;
   --content-width: 1400px;
 }
 

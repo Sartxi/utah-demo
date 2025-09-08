@@ -2,10 +2,11 @@ import "./styles/globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Header from "./ui/header";
-import Footer from "./ui/footer";
+// import Footer from "./ui/footer";
 import SaWidget from "./sa-editor/widget";
 import { getMetaData, getNav } from "../../lib/db";
-import { GoogleAnalytics } from '@next/third-parties/google';
+import Footer from "./ui/footer";
+// import { GoogleAnalytics } from '@next/third-parties/google';
 
 const font = Montserrat({
   variable: "--font",
@@ -29,8 +30,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <div className="main-page">
           {children}
         </div>
-        <Footer nav={nav} />
-        <GoogleAnalytics gaId="AW-16908384084" />
+        <Footer />
+        {/* <GoogleAnalytics gaId="AW-16908384084" /> */}
         <SaWidget />
       </body>
     </html>

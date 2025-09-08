@@ -7,7 +7,7 @@ import Select from "../sa-editor/elements/select";
 import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-export default function ContactForm() {
+export default function ContactForm({ formwidth = 40 }: { formwidth?: number }) {
   const recaptcha: ReCAPTCHA = useRef(null);
   const [reachtime, setReachtime] = useState("Morning");
   const [sent, setSent] = useState<boolean | string>(false);
@@ -25,7 +25,7 @@ export default function ContactForm() {
     if (!data) {
       setSent("error");
       return;
-    }
+  }
     const token = await recaptcha?.current?.executeAsync();
     const send = await sendContact(data, token);
     setSent(send?.success ? "success" : "error");
@@ -34,7 +34,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className={styles.form}>
+    <div className={styles.form} style={{ width: `${formwidth}%` }}>
       {typeof sent === 'string' && <div className={styles.sentmessage}>{sent === "error" ? <span>{error}</span> : <strong>Your message sent!</strong>}</div>}
       <Form action={(data: FormData) => setSending(data)}>
         <label>Full Name</label>
@@ -56,7 +56,7 @@ export default function ContactForm() {
           sitekey="6LfQBtoqAAAAAChkVcvzbNdPRMZz6pp1Vgg-t4k3"
         />
         <button type="submit" className={`cta ${styles.submit}`} disabled={!!sending}>
-          {sending ? <div className={styles.loader}></div> : "Send"}
+          {sending ? <div className={styles.loader}></div> : "Get my quote!"}
         </button>
       </Form>
     </div>
