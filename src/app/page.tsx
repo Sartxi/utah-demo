@@ -6,6 +6,7 @@ import { wrapFirstWord } from "./util";
 import { getPageDetailsByName } from "../../lib/db";
 import ContactForm from "./contact/contactForm";
 import TextOver from "./ui/text-over";
+import { HeroLogo } from "./ui/hero-logo";
 
 export default async function Home() {
   const { page, content } = await getPageDetailsByName('home');
@@ -20,14 +21,7 @@ export default async function Home() {
       <Image src={hero.image ?? ''} className={styles.heroImg} alt={page?.name ?? ''} fill priority />
       <div className={styles.hero}>
         <div className={styles.herocontent}>
-          <Image
-            src="/full_logo.jpg"
-            alt="vic's logo"
-            width={420}
-            height={394}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className={styles.homelogo}
-          />
+          <HeroLogo style={styles.homelogo} />
           <div className={styles.btmcontent}>
             <div className={styles.titleicon}>
               <Image className={styles.technician} src={services.image ?? ''} width={200} height={220} alt={services.title ?? ""} />

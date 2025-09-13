@@ -39,7 +39,7 @@ function Menu({ nav }: { nav: Nav[] }) {
   const { menu, cta } = getMenu(nav);
   return (
     <div>
-      <div className={`${drawer ? styles.change : ''}`} onClick={() => setDrawer(!drawer)}>
+      <div className={`${drawer ? styles.change : ''} ${styles.mobilenav}`} onClick={() => setDrawer(!drawer)}>
         <div className={styles.burger}></div>
         <div className={styles.burger}></div>
         <div className={styles.burger}></div>
@@ -61,7 +61,8 @@ interface HeaderProps {
 function useHomePageScroll() {
   const page = usePathname();
   const [scrollY, setScrollY] = useState(0);
-  const isLanding = page === '/';
+  const {mobile} = useMedia();
+  const isLanding = page === '/' && !mobile;
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);

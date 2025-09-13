@@ -30,6 +30,7 @@
 
 .formcontainer {
   width: 45vw;
+  min-width: 300px;
 }
 
 .herocontent {
@@ -146,6 +147,41 @@
     padding: 10px;
   }
 
+  .hero {
+    flex-direction: column;
+    gap: 0;
+    background-color: #eee;
+    padding: 20px 15px;
+  }
+
+  .hero h1 {
+    font-size: 1.4em;
+  }
+
+  .hero h3 {
+    font-size: 1em;
+  }
+
+  .solutioncontent {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .heroImg,
+  .homelogo,
+  .technician {
+    display: none;
+  }
+
+  .formcontainer {
+    width: 90vw;
+  }
+
+  .cta {
+    text-align: center;
+    margin: 20px 0 30px;
+  }
+
   .services {
     flex-direction: column-reverse;
     width: 90%;
@@ -165,18 +201,15 @@
     gap: 16px;
   }
 
+  .industries h3 {
+    font-size: 1em;
+  }
+
   .services {
     top: 0;
   }
 
-  .technician {
-    position: absolute;
-    left: 0;
-    opacity: 0.2;
-  }
-
   .solutions {
-    height: 500px;
-    padding: 50px 0 0;
+    height: auto;
   }
 }

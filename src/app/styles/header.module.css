@@ -89,7 +89,7 @@
   }
 
   .logo {
-    width: 170px;
+    width: 300px;
   }
 
   .drawer {
@@ -126,5 +126,9 @@
   .change .burger:last-child {
     transform: translate(0, -11px) rotate(45deg);
     opacity: 1;
+  }
+
+  .mobilenav {
+    margin-right: 15px;
   }
 }

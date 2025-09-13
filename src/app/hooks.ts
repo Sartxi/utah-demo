@@ -21,8 +21,8 @@ export function useMedia() {
     }
   }, []);
 
-  const mobile = isDevice && width <= 599;
-  const tablet = isDevice && width >= 600 && width <= 1199;
+  const tablet = width >= 600 && width <= 1199;
+  const mobile = width <= 599;
 
   return { mobile, tablet, isDevice };
 }
