@@ -74,13 +74,13 @@ export async function sendContact(formData: FormData, token: string) {
       return { success: false, reason: "Failed security check" };
 
     await transporter.sendMail({
-      from: `"${admin?.name}, your demolition specialist"<${admin?.email}>`,
+      from: `"${admin?.name}"<${admin?.email}>`,
       to: email,
       subject: `${name}, we got your request for ${service}!`,
       html: contact,
     });
     await transporter.sendMail({
-      from: `"Your Website"<utahdustfreedemolition.com>`,
+      from: `"Your Website"<vicshaulandpickup.com>`,
       to: admin?.email,
       subject: "Cha Ching! Someone sent a contact request",
       html: notify,

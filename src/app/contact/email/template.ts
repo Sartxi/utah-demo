@@ -89,7 +89,7 @@ const getEmailTemplate = (body: string) => {
           <img
             class="logo"
             src="https://raw.githubusercontent.com/Sartxi/utah-demo/refs/heads/main/public/logo.png"
-            alt="Utah Demolition Logo"
+            alt="Vic's Logo"
           />
         </div>
         ${body}
