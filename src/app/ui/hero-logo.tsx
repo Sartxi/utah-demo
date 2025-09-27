@@ -4,9 +4,7 @@ import Image from "next/image";
 import { useMedia } from "../hooks";
 
 export const HeroLogo = ({ style }: { style: string }) => {
-  const { tablet, isDevice } = useMedia();
-  console.log(isDevice);
-  
+  const { tablet } = useMedia();
   const { width, height } = {
     width: tablet ? 320 : 420,
     height: tablet ? 294 : 394

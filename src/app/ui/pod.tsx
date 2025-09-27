@@ -38,12 +38,45 @@ export default function Pod({ content, width, imgHeight }: PodProps) {
     if (slides.length) setTimeout(() => setLoaded(true), 350);
   }, [slides]);
 
-  const description = content.description?.split('\r\n') ?? [content.description];
   const slideClass = (index: number) => {
     if (single) return 'static';
     const animate = active === index ? styles.in : styles.out;
     const direction = dir === "left" ? styles.left : styles.right
     return `${animate} ${direction}`;
+  }
+
+  function renderDescription(description: string | null, className: string) {
+    if (!description) return null;
+
+    // Split by single newlines to get each line
+    const lines = description.split(/\r?\n/).filter(line => line.trim() !== "");
+
+    // Separate lines with and without '---'
+    const priceLines = lines.filter(line => line.includes('---'));
+    const otherLines = lines.filter(line => !line.includes('---'));
+
+    return (
+      <>
+        {otherLines.map((line, idx) => (
+          <div className={className} key={`desc-other-${idx}`}>
+            {line.trim()}
+          </div>
+        ))}
+        {priceLines.length > 0 && (
+          <div className={styles.priceTable}>
+            {priceLines.map((line, idx) => {
+              const parts = line.split('---');
+              return (
+                <div className={className} key={`desc-price-${idx}`}>
+                  <div className={styles.nestedSection}>{parts[0].trim()}</div>
+                  <div className={styles.nestedSection}>{parts[1].trim()}</div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </>
+    );
   }
 
   return (
@@ -61,7 +94,7 @@ export default function Pod({ content, width, imgHeight }: PodProps) {
           if (((active === 0 && i === active) || (active + 1 === slides.length && i === 1))) return '';
           return (
             <Image
-              key={style}
+              key={`${content.id ?? content.title ?? "pod"}-nav-${i}`}
               src="/arrow.svg"
               className={style}
               width={35}
@@ -75,7 +108,7 @@ export default function Pod({ content, width, imgHeight }: PodProps) {
           return (
             <Image
               fill
-              key={slide}
+              key={`${content.id ?? content.title ?? "pod"}-slide-${index}`}
               className={`${styles.slide} ${slideClass(index)}`}
               src={slide ?? ""}
               alt={content.title ?? ""}
@@ -85,7 +118,7 @@ export default function Pod({ content, width, imgHeight }: PodProps) {
       </div>
       <div className={styles.text}>
         <h4>{content.title}</h4>
-        {description.map(desc => <p key={desc}>{desc}</p>)}
+        {renderDescription(content.description, styles.priceItem)}
       </div>
     </div>
   )

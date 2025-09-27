@@ -3,11 +3,11 @@
   --foreground: #171717;
   --primary: #005eb2;
   --shade1: #004397;
-  --shade2: #00297d;
+  --shade2: #005eb2;
   --shade3: #000e62;
-  --shade4: #000047;
-  --shade5: #00002d;
-  --secondary: #0005b2;
+  --shade4: #000047;  
+  --shade5: #7191ad;
+  --secondary: #005eb2;
   --tertiary: #d31e19;
   --complementary: #b25400;
   --content-width: 1400px;
@@ -209,6 +209,11 @@ textarea {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.grecaptcha-badge {
+  z-index: 9;
+  bottom: 25px !important;
 }
 
 @media (max-width: 600px) {

@@ -7,6 +7,7 @@ import { getPageDetailsByName } from "../../lib/db";
 import ContactForm from "./contact/contactForm";
 import TextOver from "./ui/text-over";
 import { HeroLogo } from "./ui/hero-logo";
+import Link from "next/link";
 
 export default async function Home() {
   const { page, content } = await getPageDetailsByName('home');
@@ -54,7 +55,7 @@ export default async function Home() {
         <Image src="/solutionsbg.png" className={styles.heroImg} alt={solutions.title ?? ""} fill={true} />
         <TextOver direction="right" size="large">
           <div className={styles.solutioncontent}>
-            <Image src={solutions.image ?? ''} alt={solutions.title ?? ""} width={443} height={290} />
+            <Image src={solutions.image ?? ''} alt={solutions.title ?? ""} width={543} height={390} />
             <div className={styles.solutioncontenttext}>
               <h2>{solutions.title}</h2>
               <p className="semi-bold space">{solutions.description}</p>
@@ -68,9 +69,10 @@ export default async function Home() {
                   )
                 })}
               </div>
-              {/* <div>
+              <div>
+                <br />
                 <Link href={solutions.href ?? "/"} className="cta large">{solutions.cta}</Link>
-              </div> */}
+              </div>
             </div>
           </div>
         </TextOver>

@@ -17,6 +17,7 @@
 .homelogo {
   position: relative;
   top: -50px;
+  border-radius: 20%;
 }
 
 .hero h1 {
@@ -129,7 +130,7 @@
 .solutioncontent {
   display: flex;
   justify-content: flex-start;
-  gap: 90px;
+  gap: 20px;
   width: 100%;
   align-items: center;
   padding: 20px 0;
@@ -141,7 +142,35 @@
   gap: 15px;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .hero {
+    padding-right: 50px;
+  }
+
+  .btmcontent h1 {
+    font-size: 1.9em;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1200px) {
+  .hero {
+    padding-right: 50px;
+  }
+
+  .homelogo {
+    left: 20px;
+  }
+
+  .heroImg {
+    top: -85px !important;
+  }
+
+  .btmcontent h1 {
+    font-size: 1.9em;
+  }
+}
+
+@media (max-width: 700px) {
   .btmcontent {
     margin: 0;
     padding: 10px;
@@ -174,7 +203,7 @@
   }
 
   .formcontainer {
-    width: 90vw;
+    width: 100%;
   }
 
   .cta {

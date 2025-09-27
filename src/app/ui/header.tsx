@@ -37,6 +37,7 @@ function NavList({ nav }: { nav: Nav[] }) {
 function Menu({ nav }: { nav: Nav[] }) {
   const [drawer, setDrawer] = useState(false);
   const { menu, cta } = getMenu(nav);
+  
   return (
     <div>
       <div className={`${drawer ? styles.change : ''} ${styles.mobilenav}`} onClick={() => setDrawer(!drawer)}>

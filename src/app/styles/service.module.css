@@ -93,6 +93,29 @@ img.slide {
   transform: rotate(180deg);
 }
 
+.priceTable {
+  width: 100%;
+  padding: 5px 8px;
+  border-collapse: collapse;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+}
+
+.priceItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.priceItem:last-child {
+  margin-bottom: 0;
+}
+
+.priceItem > div:nth-child(even) {
+  font-weight: bold;
+}
+
 @keyframes slide-in {
   0% { transform: translateX(-100%); opacity: 0; }
   50% { transform: translateX(-10%); opacity: 0; }

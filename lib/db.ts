@@ -73,7 +73,7 @@ export const getNav = async () => {
       }
       return n;
     });
-    const navWithChildren = await Promise.all(getChilds)
+    const navWithChildren = await Promise.all(getChilds);
     return navWithChildren;
   }
   return nav;
